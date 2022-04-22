@@ -8,11 +8,12 @@ from pages import home, home2#, metadata, data_visualize, redundant, inference #
 app = MultiPage()
 
 # Title of the main page
-st.title("DMQL Project")
+st.title("ERP System")
 
 # Add all your applications (pages) here
-app.add_page("HOME", home.app)
-app.add_page("Home 2", home2.app)
+app.add_page("Home", home.app)
+# app.add_page("Home 2", blank.app)
+
 
 # The main app
 app.run()
