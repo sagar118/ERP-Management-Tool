@@ -3,13 +3,13 @@ import pandas as pd
 import numpy as np
 import glob
 
-FILE_DIR = "./Data Files/"
+FILE_DIR = "../Data Files/"
 
 conn = psycopg2.connect(
     host="localhost",
     database="DMQL_Project",
     user="postgres",
-    password="BondJamesBond$007")
+    password="PostgreSQL#118")
 
 cur = conn.cursor()
 
@@ -35,7 +35,9 @@ for table_name in table_insert_order:
     data = data.replace([np.nan], [None])
 
     # args_str = ",".join(cur.mogrify("(" + ("%s,"*n_cols).strip(",") + ")", tuple(row)[1:]).decode('utf-8') for row in data.itertuples())   
+
     col_string = ",".join(col for col in col_name)
     placeholders =  "(" + ("%s,"*n_cols).strip(",") + ")"
+    
     cur.executemany("INSERT INTO "+ table_name + " (" + col_string + ") VALUES " + placeholders, data.values.tolist())
     conn.commit()
