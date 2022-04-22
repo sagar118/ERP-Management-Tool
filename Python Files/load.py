@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import glob
 
-FILE_DIR = "./ERP Tables/"
+FILE_DIR = "./Data Files/"
 
 conn = psycopg2.connect(
     host="localhost",
@@ -13,7 +13,7 @@ conn = psycopg2.connect(
 
 cur = conn.cursor()
 
-table_insert_order = ["categories", "supplier", "products", "employees", "territories", "employee_territories", "customers", "shippers", "orders", "order_details"]
+table_insert_order = ["categories", "categories_description", "post_address_lookup", "supplier", "products", "employees", "territories", "employee_territories", "customers", "shippers", "orders", "order_details"]
 
 # for filepath in glob.glob(FILE_DIR + "*.csv"):
 for table_name in table_insert_order:
@@ -34,8 +34,8 @@ for table_name in table_insert_order:
     data.fillna(value=np.nan, inplace=True)
     data = data.replace([np.nan], [None])
 
-    args_str = ",".join(cur.mogrify("(" + ("%s,"*n_cols).strip(",") + ")", tuple(row)[1:]).decode('utf-8') for row in data.itertuples())   
+    # args_str = ",".join(cur.mogrify("(" + ("%s,"*n_cols).strip(",") + ")", tuple(row)[1:]).decode('utf-8') for row in data.itertuples())   
     col_string = ",".join(col for col in col_name)
-    
-    cur.execute("INSERT INTO "+ table_name + " (" + col_string + ") VALUES " + args_str +";")
+    placeholders =  "(" + ("%s,"*n_cols).strip(",") + ")"
+    cur.executemany("INSERT INTO "+ table_name + " (" + col_string + ") VALUES " + placeholders, data.values.tolist())
     conn.commit()
