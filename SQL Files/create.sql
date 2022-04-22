@@ -22,8 +22,8 @@ description varchar(100)
 );
 
 CREATE TABLE post_address_lookup(
-postal_code varchar(20) NOT NULL,
-country varchar(20) NOT NULL,
+postal_code varchar(20),
+country varchar(20),
 city varchar(30) NOT NULL,
 PRIMARY KEY (postal_code, country)
 );
@@ -33,7 +33,7 @@ id int PRIMARY KEY,
 company_name varchar(40) NOT NULL,
 contact_name varchar(40) NOT NULL,
 contact_title varchar(40),
-postal_code varchar(20) NOT NULL,
+postal_code varchar(20),
 country varchar(20),
 contact varchar(16) NOT NULL,
 FOREIGN KEY (postal_code, country) REFERENCES post_address_lookup (postal_code, country) ON DELETE SET NULL ON UPDATE CASCADE
@@ -57,7 +57,7 @@ first_name varchar(25) NOT NULL,
 title varchar(25),
 birthdate DATE,
 hire_date DATE DEFAULT CURRENT_DATE,
-postal_code VARCHAR(20) NOT NULL,
+postal_code VARCHAR(20),
 country varchar(20),
 contact varchar(16) NOT NULL,
 reports_to int REFERENCES employees(id) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -79,7 +79,7 @@ id varchar(10) PRIMARY KEY,
 name varchar(50) NOT NULL,
 contact_name varchar(40) NOT NULL,
 title varchar(40),
-postal_code varchar(20) NOT NULL,
+postal_code varchar(20),
 country varchar(20),
 contact varchar(20) NOT NULL,
 FOREIGN KEY (postal_code, country) REFERENCES post_address_lookup (postal_code, country) ON DELETE SET NULL ON UPDATE CASCADE
@@ -101,7 +101,7 @@ shipped_date DATE,
 shipper_id int REFERENCES shippers(id) ON DELETE SET NULL ON UPDATE CASCADE,
 weight FLOAT,
 ship_name VARCHAR(40),
-ship_postal_code varchar(20) NOT NULL,
+ship_postal_code varchar(20),
 ship_country varchar(20),
 FOREIGN KEY (ship_postal_code, ship_country) REFERENCES post_address_lookup (postal_code, country) ON DELETE SET NULL ON UPDATE CASCADE
 );
