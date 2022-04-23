@@ -20,6 +20,8 @@ def app():
     data = pd.DataFrame(result, columns=colnames)
     st.dataframe(data)
 
+    cols_to_print = st.sidebar.multiselect("Select Columns to Print:", data.columns)
+
     cols_to_filter = st.sidebar.multiselect("Select Columns to Filter on", colnames)
     filters = {}
     and_or_string = []
@@ -33,11 +35,30 @@ def app():
 
 
     
-    print('filters ', filters)
-    print('and_or_string ', and_or_string)
-    # st.button('Get Result', on_click=get_result(filters, table_name))
+    # print('filters ', filters)
+    # print('and_or_string ', and_or_string)
+    st.button('Get Result', on_click=get_result(filters, table_name, and_or_string, cols_to_print))
 
-def get_result(filters, table_name):
+def get_result(filters, table_name, and_or_string, cols_to_print):
     # query_builder = 
     # st.dataframe(data)
-    pass
+    query = ""
+    st.write(f'filters {filters} table_name {table_name} and_or_string {and_or_string} cols_to_print {cols_to_print}')
+    if len(cols_to_print) == 0:
+        st.write('No columns selected')
+        query += "SELECT * FROM {}".format(table_name)
+    else:
+        query += "SELECT {} FROM {}".format(', '.join(cols_to_print), table_name)
+
+    counter_for_and_or_string = 0
+    if len(filters) > 0:
+        query += " WHERE "
+        for key, value in filters.items():
+            if value != "":
+                if value[0] not in ['<', '>', '=', '!']:
+                    value = ' = ' + value
+                # print(filters.keys().tolist())
+                query += "{} {} {} ".format(key, value,and_or_string[counter_for_and_or_string])
+                
+                counter_for_and_or_string += 1
+    st.write(query)
