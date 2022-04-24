@@ -1,5 +1,5 @@
 import streamlit as st
-
+st.set_page_config(layout="wide")
 # Custom imports 
 from multipage import MultiPage
 from pages import home, filter_tables#, metadata, data_visualize, redundant, inference # import your pages here

@@ -3,6 +3,7 @@ import time
 import numpy as np
 from sql_connect import cur
 import pandas as pd
+
 def app():
     table_names = ["Categories", "Categories Description", "Post Address Lookup", "Supplier", "Products", "Employees", "Territories", "Employee Territories", "Customers", "Shippers", "Orders", "Order Details"]
     table_names.sort()

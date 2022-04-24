@@ -7,4 +7,5 @@ conn = psycopg2.connect(
     user=config.USER,
     password=config.PASSWORD)
 
+conn.autocommit = True
 cur = conn.cursor()

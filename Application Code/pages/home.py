@@ -4,7 +4,6 @@ import streamlit as st
 import pandas as pd
 from sql_connect import cur, conn
 
-
 st.session_state.page_number = 0
 st.session_state.submit = False
 st.session_state.insert = []
@@ -67,8 +66,14 @@ def app():
         if col not in st.session_state:
             if dtypes[col] == 'O':
                 st.session_state[col] = ''
+                st.session_state[col+'_update_check'] = ''
+                st.session_state[col+'_update_value'] = ''
+                st.session_state[col+'_update_condition'] = ''
             else:
                 st.session_state[col] = 0
+                st.session_state[col+'_update_check'] = ''
+                st.session_state[col+'_update_value'] = 0
+                st.session_state[col+'_update_condition'] = ''
     print(table_name)
 
     # st.button('Insert', on_click = insert_table_details, args=([table_name]))
@@ -81,10 +86,13 @@ def app():
         if st.button('Delete'):  
             delete_table_details(table_name)
     
-    # with col3:
-        # if st.button('Update'):  
-            # insert_table_details(table_name)
+    with col3:
+        if st.button('Update'):  
+            if 'update_where_columns' not in st.session_state:
+                st.session_state.update_where_columns = 0
+            update_table_details(table_name)
 
+    # print('app', st.session_state)
     st.write(table)
     cur.execute(f"SELECT * FROM {table_name}")
     colnames = [desc[0] for desc in cur.description]
@@ -197,4 +205,110 @@ def delete_values(table):
     print("DELETE FROM "+ table + " WHERE "+delete_condition)
     # print(st.session_state.insert)
     cur.execute("DELETE FROM "+ table + " WHERE "+delete_condition)
+    conn.commit
+
+def update_table_details(table):
+    print('Inside Update: ', table)
+    with st.form("update_form", clear_on_submit=True):
+        st.write("Enter update details:")
+        
+        col_names = column_dict[table][0]
+        dtypes = column_dict[table][1]
+        values = list()
+
+        for col in col_names:
+            print('Inside for loop ',col)
+            if dtypes[col] == 'O':
+                text = st.text_input(col, key=col)
+                # print('Text is: ',text)
+                values.append(text)
+            if dtypes[col] in ['int64', 'float64']:
+                number = st.number_input(col, key=col)
+                # print('Number is: ', number)
+                values.append(number)
+                # st.session_state.insert = values
+        print('-'*15)
+        print('Values is : ', values)
+        st.write("Enter Where column details:")
+        col_dict_condition = {}
+        for index, col in enumerate(col_names):
+            # rand_num1 = np.random.randint(1, 100)
+            # rand_num2 = np.random.randint(101, 200)
+            if index != len(col_names)-1:
+                checked = st.checkbox(f'Based on: {col.title()}', key=col+'_update_check')
+                input_condition = st.text_input("Condition", key=col+'_update_value')
+                next_condition = st.text_input("AND or OR", key=col+'_update_condition')
+                input = {
+                    input_condition: input_condition,
+                    next_condition: next_condition
+                }
+                if(checked):
+                    col_dict_condition[col] = input
+            else:
+                checked = st.checkbox(f'Based on: {col.title()}', key=col+'_update_check')
+                input_condition = st.text_input("Condition:", key=col+'_update_value')
+                input = {
+                    input_condition: input_condition
+                }
+                if(checked):
+                    col_dict_condition[col] = input
+        print('Dict is: ', col_dict_condition)
+        st.session_state.update_where_columns = col_dict_condition
+        submitted = st.form_submit_button("Submit", on_click=update_values, args=([table]))
+
+def update_values(table):
+    # print('cols_to_filter: ',st.write(st.session_state))
+    col_names = column_dict[table][0]
+    dtypes = column_dict[table][1]
+    values = []
+    update_columns = []
+    col_update_colname = []
+    col_update_value = []
+    col_update_condition = []
+    set_string = ''
+    where_string = ''
+    print('Inside the show values')
+    for i, col in enumerate(col_names):
+        if dtypes[col] == 'O':
+            if st.session_state[col] != '':
+                values.append(st.session_state[col])
+                update_columns.append(col)
+            if st.session_state[col+'_update_check']:
+                col_update_colname.append(col)
+                col_update_value.append(st.session_state[col+'_update_value'])
+                if i < len(col_names) - 1:
+                    if st.session_state[col+'_update_condition'] != '':
+                        col_update_condition.append(st.session_state[col+'_update_condition'])
+        
+        if dtypes[col] in ['int64', 'float64']:
+            if st.session_state[col] != 0:
+                values.append(st.session_state[col])
+                update_columns.append(col)
+            if st.session_state[col+'_update_check']:
+                col_update_colname.append(col)
+                col_update_value.append(st.session_state[col+'_update_value'])
+                if i < len(col_names) - 1:
+                    if st.session_state[col+'_update_condition'] != '':
+                        col_update_condition.append(st.session_state[col+'_update_condition'])
+    # print("Values: ",values)
+    for i, col in enumerate(update_columns):
+        if type(values[i]) == int or type(values[i]) == float:
+            set_string += " "+col+" = "+str(values[i])+" ,"
+        else:
+            set_string += " "+col+" = '"+str(values[i])+"' ,"
+    set_string = set_string[:-1]
+    
+    for i, col in enumerate(col_update_colname):
+        if type(col_update_value[i]) == int or type(col_update_value[i]) == float:
+            where_string += " "+col+" = "+str(col_update_value[i])
+            if i < len(col_update_condition):
+                where_string += ' ' + col_update_condition[i] + ' '  
+        else:
+            where_string += " "+col+" = '"+str(col_update_value[i])+"' "
+            if i < len(col_update_condition):
+                where_string += ' ' + col_update_condition[i] + ' '
+    # delete_condition = delete_condition.rsplit(' ', 1)[0]
+    # print("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
+    # print(st.session_state.insert)
+    cur.execute("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
     conn.commit
