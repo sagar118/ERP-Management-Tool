@@ -43,61 +43,60 @@ def app():
     print(table_name)
 
     # st.button('Insert', on_click = insert_table_details, args=([table_name]))
-    col1, col2, col3 = st.columns([1,1,1])
-    with col1:
-        if st.button('Insert'):  
-            insert_table_details(table_name)
-
-    with col2:
-        if st.button('Delete'):  
-            delete_table_details(table_name)
-    
-    with col3:
-        if st.button('Update'):  
-            if 'update_where_columns' not in st.session_state:
-                st.session_state.update_where_columns = 0
-            update_table_details(table_name)
+    col1, col2 = st.columns([1,0.2])
 
     # print('app', st.session_state)
-    st.write(table)
+    
     cur.execute(f"SELECT * FROM {table_name}")
     colnames = [desc[0] for desc in cur.description]
 
     result = cur.fetchall()
     # st.table(pd.DataFrame(result))
     result = pd.DataFrame(result, columns=colnames)
+    with col1:
+        st.write(table)
+        n = 20
+        last_page = len(result) // n
+        if(len(result) > 20):
+            # prev, _ ,next = st.columns([1, 10, 1])
+            # print(prev, next)
+            
+            if st.button("Next"):
+                if st.session_state.page_number + 1 > last_page:
+                    st.session_state.page_number = 0
+                else:
+                    st.session_state.page_number += 1
+
+            if st.button("Previous"):
+
+                if st.session_state.page_number - 1 < 0:
+                    st.session_state.page_number = last_page
+                else:
+                    st.session_state.page_number -= 1
+
+            # print('st.session_state.page_number ', st.session_state.page_number)
+            # Get start and end indices of the next page of the dataframe
+            start_idx = st.session_state.page_number * n 
+            end_idx = (1 + st.session_state.page_number) * n
+            x = st.session_state.page_number
+        # print("Session State: ", start_idx, end_idx, st.write(st.session_state.page_number))
+        # Index into the sub dataframe
+            sub_df = result.iloc[start_idx:end_idx]
+            st.table(sub_df)
+        else:
+            st.table(result)
+
+    with col2:
+        if st.button('Insert'):  
+            insert_table_details(table_name)
+
+        if st.button('Delete'):  
+            delete_table_details(table_name)
     
-    n = 20
-    last_page = len(result) // n
-    if(len(result) > 20):
-        prev, _ ,next = st.columns([1, 10, 1])
-        # print(prev, next)
-        
-        if next.button("Next"):
-
-            if st.session_state.page_number + 1 > last_page:
-                st.session_state.page_number = 0
-            else:
-                st.session_state.page_number += 1
-
-        if prev.button("Previous"):
-
-            if st.session_state.page_number - 1 < 0:
-                st.session_state.page_number = last_page
-            else:
-                st.session_state.page_number -= 1
-
-        # print('st.session_state.page_number ', st.session_state.page_number)
-        # Get start and end indices of the next page of the dataframe
-        start_idx = st.session_state.page_number * n 
-        end_idx = (1 + st.session_state.page_number) * n
-        x = st.session_state.page_number
-    # print("Session State: ", start_idx, end_idx, st.write(st.session_state.page_number))
-    # Index into the sub dataframe
-        sub_df = result.iloc[start_idx:end_idx]
-        st.table(sub_df)
-    else:
-        st.table(result)
+        if st.button('Update'):  
+            if 'update_where_columns' not in st.session_state:
+                st.session_state.update_where_columns = 0
+            update_table_details(table_name)
 
 def reset_page():
         st.session_state.page_number = 0
@@ -124,7 +123,8 @@ def insert_table_details(table):
                 # st.session_state.insert = values
         print('-'*15)
         # print(values)
-        submitted = st.form_submit_button("Submit", on_click=insert_values, args=([table]))  
+        submitted = st.form_submit_button("Submit", on_click=insert_values, args=([table]))
+    st.button("Cancel")
     
 def insert_values(table):
     col_names = column_dict[table][0]
@@ -171,6 +171,7 @@ def delete_table_details(table):
         print('-'*15)
         # print(values)
         submitted = st.form_submit_button("Submit", on_click=delete_values, args=([table]))
+    st.button("Cancel")
 
 def delete_values(table):
     col_names = column_dict[table][0]
@@ -242,6 +243,7 @@ def update_table_details(table):
                 equality = st.text_input('Condition: =, >, >=, <, <=, in, between, like', key= col+'_update_equality')
                 input_condition = st.text_input(col+' value', key=col+'_update_value')
         submitted = st.form_submit_button("Submit", on_click=update_values, args=([table]))
+    st.button("Cancel")
 
 def update_values(table):
     # print('cols_to_filter: ',st.write(st.session_state))
