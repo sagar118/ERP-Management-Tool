@@ -23,7 +23,34 @@ def call_customers(table_name):
     query_result = cur.fetchall()
     for res in query_result:
         customer_ids.append(res[0])
-    print(customer_ids)
+    customer_ids.sort()
     customer_id = st.selectbox("Select the customer:", customer_ids)
-    
+    cur.execute(f"""Select 
+        o.id as order_id
+       , o.order_date
+       , o.shipped_date
+       , o.delivery_date
+       , s.name as shippers_name
+       , p.name as product_name
+       , od.quantity
+       , od.unit_price
+       , od.discount
+        from
+                orders        o
+            , shippers      s
+            , order_details od
+            , products      p
+        where
+                o.shipper_id      = s.id
+                and o.id          = od.order_id
+                and od.product_id = p.id
+                and o.customer_id = '{customer_id}'
+        order by
+                o.id
+        ;"""
+    )
+    colnames = [desc[0] for desc in cur.description]
+    result = cur.fetchall()
+    result = pd.DataFrame(result, columns=colnames)
+    st.table(result)
 
