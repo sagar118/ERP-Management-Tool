@@ -150,10 +150,10 @@ def call_discrepancies():
         left join products on order_details.product_id = products.id
     where
         products.discontinued = True
-        and products.name = '{product_name}'
+        and products.name = '{product_name.replace("'", "''")}'
     order by
         orders.id
-        """.replace('^', '')
+        """
     
     print(query)
     cur.execute(query)
