@@ -3,6 +3,7 @@ import numpy as np
 import streamlit as st
 import pandas as pd
 from sql_connect import cur, conn
+import datetime
 
 import plotly.figure_factory as ff
 import plotly.express as px
@@ -30,14 +31,16 @@ def reset_page():
     st.session_state.page_number = 0
 
 def call_customers(table_name):
-    cur.execute(f'SELECT DISTINCT ID FROM {table_name}')
+    cur.execute(f'SELECT ID, NAME FROM {table_name}')
     colnames = [desc[0] for desc in cur.description]
-    customer_ids = []
+    customers = []
     query_result = cur.fetchall()
     for res in query_result:
-        customer_ids.append(res[0])
-    customer_ids.sort()
-    customer_id = st.selectbox("Select the customer:", customer_ids)
+        customers.append(res[0]+' - '+res[1])
+    customers.sort()
+    customer = st.selectbox("Select the customer:", customers)
+    customer_id = customer.split('-')[0].strip()
+    where_conditions = "o.shipper_id = s.id and o.id = od.order_id and od.product_id = p.id and o.customer_id = '"+ customer_id+"'"
     cur.execute(f"""Select 
         o.id as order_id
        , o.order_date
@@ -55,10 +58,49 @@ def call_customers(table_name):
             , order_details od
             , products      p
         where
-                o.shipper_id      = s.id
-                and o.id          = od.order_id
-                and od.product_id = p.id
-                and o.customer_id = '{customer_id}'
+                {where_conditions}
+        order by
+                o.id
+        ;"""
+    )
+    colnames_filters = [desc[0] for desc in cur.description]
+    result_filters = cur.fetchall()
+    result_filters = pd.DataFrame(result_filters, columns=colnames_filters)
+
+    order_ids = list(set(result_filters.loc[:,'order_id']))
+    order_ids.sort()
+    order_ids.insert(0,'')
+    # order_ids
+    order_id = st.selectbox("Order Id:", order_ids)
+    # print(order_id)
+    if order_id:
+        where_conditions += " and o.id = "+ str(order_id)
+
+    order_dates = list(set(result_filters.loc[:,'order_date']))
+    order_dates = sorted(order_dates)
+    order_date = st.date_input("Order Date", [order_dates[0], order_dates[-1]])
+    print(order_date, type(order_date))
+    where_conditions += " AND o.order_date BETWEEN '"+ str(order_date[0]) +"' and '" + str(order_date[1]) +"'"
+
+
+    cur.execute(f"""Select 
+        o.id as order_id
+       , o.order_date
+       , o.shipped_date
+       , o.delivery_date
+       , s.name as shippers_name
+       , p.name as product_name
+       , od.quantity
+       , od.unit_price
+       , od.discount
+       , od.quantity * od.unit_price * (1 - od.discount) as total_price
+        from
+                orders        o
+            , shippers      s
+            , order_details od
+            , products      p
+        where
+                {where_conditions}
         order by
                 o.id
         ;"""
