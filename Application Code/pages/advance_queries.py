@@ -12,10 +12,10 @@ import plotly.graph_objects as go
 
 
 def app():
-    use_cases = ["Custom Order Details", "Discontinued Product Orders", "Delivery Lag Analysis"]
+    use_cases = ["Customer Order Details", "Employee Order Details", "Discontinued Product Orders", "Delivery Lag Analysis"]
     # use_cases.sort()
     table = st.sidebar.selectbox("Select Use Case", use_cases, on_change= reset_page)
-    if (table == 'Custom Order Details'):
+    if (table == 'Customer Order Details'):
         # table_name = "_".join(table.lower().split())
         call_customers("Customers")
     
@@ -25,6 +25,8 @@ def app():
     elif (table == 'Delivery Lag Analysis'):
         call_delivery_lag()
 
+    elif (table == 'Employee Order Details'):
+        call_employee_order_details()
 
 
 def reset_page():
@@ -111,6 +113,106 @@ def call_customers(table_name):
     st.table(result)
     fig = px.bar(result, x="order_date", y="total_price", color="shippers_name")
     st.plotly_chart(fig, use_container_width=True)
+
+
+def call_employee_order_details():
+    cur.execute(f'SELECT ID, FIRST_NAME, LAST_NAME FROM EMPLOYEES')
+    colnames = [desc[0] for desc in cur.description]
+    employees = []
+    query_result = cur.fetchall()
+    for res in query_result:
+        employees.append(str(res[0])+' - '+res[1] +' '+res[2])
+    employees.sort()
+    employee = st.selectbox("Select the Employee:", employees)
+    employee_id = employee.split('-')[0].strip()
+    where_conditions = "o.shipper_id = s.id and o.id = od.order_id and od.product_id = p.id and o.customer_id = c.id and o.employee_id = "+ str(employee_id)
+    cur.execute(f"""Select 
+        o.id as order_id
+       , c.id as customer_id
+       , c.name as customer_name
+       , o.order_date
+       , o.shipped_date
+       , o.delivery_date
+       , s.name as shippers_name
+       , p.name as product_name
+       , od.quantity
+       , od.unit_price
+       , od.discount
+       , od.quantity * od.unit_price * (1 - od.discount) as total_price
+        from
+                orders        o
+            , shippers      s
+            , order_details od
+            , products      p
+            , customers    c
+        where
+                {where_conditions}
+        order by
+                o.id
+        ;"""
+    )
+    colnames_filters = [desc[0] for desc in cur.description]
+    result_filters = cur.fetchall()
+    result_filters = pd.DataFrame(result_filters, columns=colnames_filters)
+
+    order_ids = list(set(result_filters.loc[:,'order_id']))
+    order_ids.sort()
+    order_ids.insert(0,'')
+    # order_ids
+    order_id = st.selectbox("Order Id:", order_ids)
+    # print(order_id)
+    if order_id:
+        where_conditions += " and o.id = "+ str(order_id)
+
+    order_dates = list(set(result_filters.loc[:,'order_date']))
+    order_dates = sorted(order_dates)
+    order_date = st.date_input("Order Date", [order_dates[0], order_dates[-1]])
+    print(order_date, type(order_date))
+    where_conditions += " AND o.order_date BETWEEN '"+ str(order_date[0]) +"' and '" + str(order_date[1]) +"'"
+
+    customer_dict = {}
+    for row in result_filters.itertuples():
+        if(row[3] not in customer_dict):
+            customer_dict[row[3]] = row[2]
+
+    customer_names = list(sorted(customer_dict.keys()))
+    customer_names.insert(0,'')
+    customer_name = st.selectbox("Customer:", customer_names)
+    # print(order_id)
+    if customer_name:
+        where_conditions += " and c.id = '"+ str(customer_dict[customer_name]) +"'"
+
+    cur.execute(f"""Select 
+        o.id as order_id
+       , c.name as customer_name
+       , o.order_date
+       , o.shipped_date
+       , o.delivery_date
+       , s.name as shippers_name
+       , p.name as product_name
+       , od.quantity
+       , od.unit_price
+       , od.discount
+       , od.quantity * od.unit_price * (1 - od.discount) as total_price
+        from
+                orders        o
+            , shippers      s
+            , order_details od
+            , products      p
+            , customers    c
+        where
+                {where_conditions}
+        order by
+                o.id
+        ;"""
+    )
+    colnames = [desc[0] for desc in cur.description]
+    result = cur.fetchall()
+    result = pd.DataFrame(result, columns=colnames)
+    st.table(result)
+    fig = px.bar(result, x="order_date", y="total_price", color="shippers_name")
+    st.plotly_chart(fig, use_container_width=True)
+
 
 def call_discrepancies():
     query = """
