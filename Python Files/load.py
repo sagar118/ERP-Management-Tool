@@ -9,7 +9,7 @@ conn = psycopg2.connect(
     host="localhost",
     database="DMQL_Project",
     user="postgres",
-    password="PostgreSQL#118")
+    password="Devilno7#")
 
 cur = conn.cursor()
 
