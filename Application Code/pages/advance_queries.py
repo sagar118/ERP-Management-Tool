@@ -11,15 +11,18 @@ import plotly.graph_objects as go
 
 
 def app():
-    use_cases = ["Custom Order Details", "Discontinued Product Orders"]
-    use_cases.sort()
+    use_cases = ["Custom Order Details", "Discontinued Product Orders", "Delivery Lag Analysis"]
+    # use_cases.sort()
     table = st.sidebar.selectbox("Select Use Case", use_cases, on_change= reset_page)
-    if(table == 'Custom Order Details'):
+    if (table == 'Custom Order Details'):
         # table_name = "_".join(table.lower().split())
         call_customers("Customers")
     
     elif (table == 'Discontinued Product Orders'):
         call_discrepancies()
+    
+    elif (table == 'Delivery Lag Analysis'):
+        call_delivery_lag()
 
 
 
@@ -106,10 +109,127 @@ def call_discrepancies():
     where
         products.discontinued = True
         and products.name = '{product_name}'
+    order by
+        orders.id
         """.replace('^', '')
+    
     print(query)
     cur.execute(query)
     colnames = [desc[0] for desc in cur.description]
     result = cur.fetchall()
     result = pd.DataFrame(result, columns=colnames)
     st.table(result)
+
+
+def call_delivery_lag():
+    options = ["All", "Delayed", "Not Delayed"]
+    option = st.selectbox("Select the option:", options)
+    if option == "All":
+        query = """
+        select
+            orders.id, 
+            orders.order_date, 
+            orders.shipped_date, 
+            orders.delivery_date,
+            orders.shipped_date - orders.delivery_date as delay,
+            order_details.quantity,
+            order_details.unit_price,
+            order_details.discount,
+            order_details.quantity * order_details.unit_price * (1 - order_details.discount) as total_price,
+            products.name as product_name
+        from
+            orders left join order_details on orders.id = order_details.order_id 
+            left join products on order_details.product_id = products.id
+        order by
+            total_price desc
+        """
+        query2 = """
+        select
+            orders.shipped_date,
+            sum(order_details.quantity * order_details.unit_price * (1 - order_details.discount)) as sum_of_price
+        from
+            orders left join order_details on orders.id = order_details.order_id 
+            left join products on order_details.product_id = products.id
+        group by 
+            orders.shipped_date
+        """
+    elif option == "Delayed":
+        query = """
+        select
+            orders.id, 
+            orders.order_date, 
+            orders.shipped_date, 
+            orders.delivery_date,
+            orders.shipped_date - orders.delivery_date as delay,
+            order_details.quantity,
+            order_details.unit_price,
+            order_details.discount,
+            order_details.quantity * order_details.unit_price * (1 - order_details.discount) as total_price,
+            products.name as product_name
+        from
+            orders left join order_details on orders.id = order_details.order_id 
+            left join products on order_details.product_id = products.id
+        where
+            orders.shipped_date - orders.delivery_date > 0
+        order by
+            total_price desc
+        """
+        query2 = """
+        select
+            orders.shipped_date,
+            sum(order_details.quantity * order_details.unit_price * (1 - order_details.discount)) as sum_of_price
+        from
+            orders left join order_details on orders.id = order_details.order_id 
+            left join products on order_details.product_id = products.id
+        where
+            orders.shipped_date - orders.delivery_date > 0
+        group by 
+            orders.shipped_date
+        """
+        
+    elif option == "Not Delayed":
+        query = """
+        select
+            orders.id, 
+            orders.order_date, 
+            orders.shipped_date, 
+            orders.delivery_date,
+            orders.shipped_date - orders.delivery_date as delay,
+            order_details.quantity,
+            order_details.unit_price,
+            order_details.discount,
+            order_details.quantity * order_details.unit_price * (1 - order_details.discount) as total_price,
+            products.name as product_name
+        from
+            orders left join order_details on orders.id = order_details.order_id 
+            left join products on order_details.product_id = products.id
+        where
+            orders.shipped_date - orders.delivery_date <= 0
+        order by
+            total_price desc
+        """
+        query2 = """
+        select
+            orders.shipped_date,
+            sum(order_details.quantity * order_details.unit_price * (1 - order_details.discount)) as sum_of_price
+        from
+            orders left join order_details on orders.id = order_details.order_id 
+            left join products on order_details.product_id = products.id
+        where
+            orders.shipped_date - orders.delivery_date <= 0
+        group by 
+            orders.shipped_date
+        """
+    cur.execute(query)
+    colnames = [desc[0] for desc in cur.description]
+    result = cur.fetchall()
+    result = pd.DataFrame(result, columns=colnames)
+    st.table(result.head(10))
+
+    cur.execute(query2)
+    colnames = [desc[0] for desc in cur.description]
+    result = cur.fetchall()
+    result = pd.DataFrame(result, columns=colnames)
+    fig = px.bar(result, x="shipped_date", y="sum_of_price")
+    st.plotly_chart(fig, use_container_width=True)
+    
