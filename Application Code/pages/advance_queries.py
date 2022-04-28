@@ -80,7 +80,6 @@ def call_discrepancies():
     group by
         products.name"""
 
-    
     cur.execute(query)
     colnames = [desc[0] for desc in cur.description]
     result = cur.fetchall()
@@ -107,7 +106,8 @@ def call_discrepancies():
     where
         products.discontinued = True
         and products.name = '{product_name}'
-        """
+        """.replace('^', '')
+    print(query)
     cur.execute(query)
     colnames = [desc[0] for desc in cur.description]
     result = cur.fetchall()
