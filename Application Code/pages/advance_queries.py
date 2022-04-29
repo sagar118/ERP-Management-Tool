@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 
 
 def app():
-    use_cases = ["Customer Order Details", "Employee Order Details", "Discontinued Product Orders", "Delivery Lag Analysis","Popular Categories", "Employee Hierarchy"]
+    use_cases = ["Customer Order Details", "Employee Order Details", "Discontinued Product Orders", "Delivery Lag Analysis","Popular Categories", "Employee Hierarchy", "Supplier Details"]
     # use_cases.sort()
     table = st.sidebar.selectbox("Select Use Case", use_cases, on_change= reset_page)
     if (table == 'Customer Order Details'):
@@ -33,6 +33,8 @@ def app():
     elif (table == "Employee Hierarchy"):
         call_employee_hierarchy()
 
+    elif (table == "Supplier Details"):
+        call_supplier_details()
 
 
 def reset_page():
@@ -515,3 +517,125 @@ def call_employee_hierarchy():
 
     st.write('Employee Hierarchy: 0 - Vice President, 1 - Employee Reporting to VP, 2 - Employee to Employee')
     st.table(result)
+
+def call_supplier_details():
+
+    if 'page_number' not in st.session_state:
+        st.session_state.page_number = 0
+
+    cur.execute(f'SELECT ID, company_name FROM SUPPLIER ORDER BY ID')
+    colnames = [desc[0] for desc in cur.description]
+    suppliers = []
+    query_result = cur.fetchall()
+    for res in query_result:
+        suppliers.append(str(res[0])+' - '+res[1])
+    supplier = st.selectbox("Select the supplier:", suppliers)
+    supplier_id = supplier.split('-')[0].strip()
+    sum_quantity = 0
+    where_conditions = "s.id = p.supplier_id AND p.id = od.product_id and s.id = '"+ str(supplier_id)+"'"
+    cur.execute(f"""
+    SELECT
+        s.id             ,
+        s.company_name   ,
+        s.contact_name   ,
+        s.contact        ,
+        p.name AS product,
+        p.unit_price     ,
+        p.stock          ,
+        p.discontinued   ,
+        SUM(od.quantity) AS quantity_sold
+    FROM
+        supplier      s,
+        products      p,
+        order_details od
+    WHERE
+            {where_conditions}
+    GROUP BY
+        od.product_id ,
+        s.id          ,
+        s.company_name,
+        s.contact_name,
+        s.contact     ,
+        p.name        ,
+        p.unit_price  ,
+        p.stock       ,
+        p.discontinued
+    HAVING
+        SUM(od.quantity) > {sum_quantity}
+    ORDER BY
+        s.id;
+    """
+    )
+    colnames_filters = [desc[0] for desc in cur.description]
+    result_filters = cur.fetchall()
+    result_filters = pd.DataFrame(result_filters, columns=colnames_filters)
+
+    discontinued = ['','True', 'False']
+    status = st.selectbox("Product discontinuity status:", discontinued)
+    if status != '':
+        where_conditions += "AND p.discontinued = '"+status.lower()+"'"
+    
+    sum_quantity = st.number_input("Sold Quantity Greater than", min_value=0)
+
+    cur.execute(f"""
+    SELECT
+        s.id             ,
+        s.company_name   ,
+        s.contact_name   ,
+        s.contact        ,
+        p.name AS product,
+        p.unit_price     ,
+        p.stock          ,
+        p.discontinued   ,
+        SUM(od.quantity) AS quantity_sold
+    FROM
+        supplier      s,
+        products      p,
+        order_details od
+    WHERE
+            {where_conditions}
+    GROUP BY
+        od.product_id ,
+        s.id          ,
+        s.company_name,
+        s.contact_name,
+        s.contact     ,
+        p.name        ,
+        p.unit_price  ,
+        p.stock       ,
+        p.discontinued
+    HAVING
+        SUM(od.quantity) > {sum_quantity}
+    ORDER BY
+        s.id;
+    """
+    )
+    colnames = [desc[0] for desc in cur.description]
+    result = cur.fetchall()
+    result = pd.DataFrame(result, columns=colnames)
+
+    n = 20
+    last_page = len(result) // n
+    if(len(result) > 20):
+        prev, _ ,next = st.columns([1, 10, 1])
+        if next.button("Next"):
+            if st.session_state.page_number + 1 > last_page:
+                st.session_state.page_number = 0
+            else:
+                st.session_state.page_number += 1
+
+        if prev.button("Previous"):
+
+            if st.session_state.page_number - 1 < 0:
+                st.session_state.page_number = last_page
+            else:
+                st.session_state.page_number -= 1
+
+        start_idx = st.session_state.page_number * n 
+        end_idx = (1 + st.session_state.page_number) * n
+    
+    if(len(result) > 20):
+        sub_df = result.iloc[start_idx:end_idx]
+        st.table(sub_df)
+    else:
+        st.table(result)
