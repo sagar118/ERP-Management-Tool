@@ -3,13 +3,13 @@ import pandas as pd
 import numpy as np
 import glob
 
-FILE_DIR = "../Data Files/"
+FILE_DIR = "../Data Files/new_data/"
 
 conn = psycopg2.connect(
     host="localhost",
     database="DMQL_Project",
     user="postgres",
-    password="Devilno7#")
+    password="PostgreSQL#118")
 
 cur = conn.cursor()
 
@@ -21,14 +21,14 @@ for table_name in table_insert_order:
     conn.commit()
 
     print(f"Inserting into table: {table_name}")
-    data = pd.read_csv(FILE_DIR + table_name + ".csv")
-    # table_name = filepath.split("\\")[1].split(".")[0]
+    data = pd.read_csv(FILE_DIR + table_name + ".csv", encoding='latin1')
+
     n_cols = data.shape[1]
     col_name = data.columns.values
 
-    if table_name == "products":
-        data.quantity_per_unit = data.quantity_per_unit.apply(lambda x: int(x.split()[0]))
-        data.discontinued = data.discontinued.apply(lambda x: True if x else False)
+    # if table_name == "products":
+        # data.quantity_per_unit = data.quantity_per_unit.apply(lambda x: int(x.split()[0]))
+        # data.discontinued = data.discontinued.apply(lambda x: True if x else False)
     
     # Handle NULL in dataframe
     data.fillna(value=np.nan, inplace=True)

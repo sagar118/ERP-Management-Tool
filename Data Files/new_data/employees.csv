@@ -1,0 +1,137 @@
+id,last_name,first_name,title,birthdate,hire_date,postal_code,country,contact,reports_to
+1,Fitzgerald,Gunnar,"Vice President, Sales",1956-08-04,1985-09-18,907R02,Iceland,5514625394,
+2,King,Daisy,Sales Manager,1992-06-26,2017-04-22,M5388A,United Arab Emirates,1622590717,1.0
+3,Esparza,Lesly,Sales Manager,1954-09-23,1975-01-13,2F365L,Turkey,1758615552,1.0
+4,Merritt,Shiloh,Sales Manager,1957-05-11,1984-11-01,27TM3,Argentina,2042725721,1.0
+5,Mcmillan,Elian,Sales Manager,1986-12-27,2012-05-26,4586R,Germany,6513191729,1.0
+6,Harris,Gemma,Sales Manager,1988-01-07,2013-08-13,YZ286K,Saudi Arabia,2353232388,1.0
+7,Whitney,Sidney,Sales Manager,1998-02-20,2023-05-08,N3944,Philippines,2347431306,1.0
+8,Mcpherson,Carlos,Sales Manager,1996-05-07,2026-01-29,C434P,Bhutan,5734600932,1.0
+9,Chavez,Sarah,Sales Manager,1976-08-03,1998-11-06,1BAF5,Norway,7785744865,1.0
+10,Lowe,Iliana,Sales Manager,1979-09-15,2006-02-18,25555V,Bolivia,4245293035,1.0
+11,Freeman,Oscar,Sales Manager,1989-12-09,2015-05-11,83X69,Belgium,2941417884,1.0
+12,Escobar,Jayden,Sales Manager,1962-05-09,1990-12-06,A8W800,Iran,3926860888,1.0
+13,Mcbride,Elisha,Sales Manager,1963-09-28,1991-02-24,1T071,Sri Lanka,7988811054,1.0
+14,Daniel,Lorena,Sales Manager,1984-09-06,2013-05-12,833541,Ukraine,2068851661,1.0
+15,Morgan,Sam,Sales Manager,1951-07-27,1975-10-29,YTG168,Croatia,8603292483,1.0
+16,Ramirez,Gerardo,Sales Manager,1981-12-26,2004-04-14,9W1453,Bulgaria,8016383674,1.0
+17,Leon,Matilda,Sales Manager,1974-01-18,1998-12-06,5D022Y,Iceland,4306764285,1.0
+18,Lam,Paxton,Sales Manager,1977-08-01,2000-05-23,L0G69,Iceland,6233647355,1.0
+19,Howe,Daniella,Sales Manager,1985-12-05,2006-11-27,15770,Argentina,8949348628,1.0
+20,Miller,Nathalia,Sales Manager,1981-07-23,2010-11-08,R52NZ,Ireland,4800234833,1.0
+21,Larsen,Leilani,Sales Manager,1948-04-19,1972-07-26,9W549,Dominican Republic,4787001182,1.0
+22,Duarte,Randy,Sales Manager,1968-02-03,1990-05-05,2ZY66W,Argentina,5483991969,1.0
+23,Noble,Rohan,Sales Manager,1991-05-14,2011-08-07,58608G,Iran,6557913799,1.0
+24,Harper,Immanuel,Sales Manager,1989-03-16,2009-12-07,64481,Lithuania,9721891804,1.0
+25,Giles,Phoenix,Sales Manager,1992-09-01,2022-04-21,8JX6Q,Czech Republic,3332455827,1.0
+26,Maldonado,Carolina,Sales Manager,1983-07-01,2005-03-25,98191,Ghana,4328601850,1.0
+27,Medina,Dominique,Inside Sales Coordinator,1963-08-15,1991-07-14,04610Q,Norway,7044894905,1.0
+28,Hoffman,Raquel,Inside Sales Coordinator,1992-06-27,2021-01-10,5848V0,Poland,3289031091,1.0
+29,Mclaughlin,Haleigh,Inside Sales Coordinator,1967-06-24,1992-01-18,80HJ86,Poland,4379341468,1.0
+30,Farrell,Cason,Inside Sales Coordinator,1980-05-02,2008-07-16,069T4R,Singapore,8546456111,1.0
+31,Boyle,Kaitlynn,Inside Sales Coordinator,1964-05-07,1986-02-14,W8005,Bulgaria,7144211144,1.0
+32,Villegas,Rose,Inside Sales Coordinator,1972-09-23,2000-09-04,O2V29,Italy,1960504084,1.0
+33,Hurst,Jose,Inside Sales Coordinator,1957-03-05,1980-02-16,763T0T,Dominican Republic,2001207616,1.0
+34,Bonilla,Judah,Inside Sales Coordinator,1954-07-28,1981-11-13,4Q5VAI,Estonia,3350926170,1.0
+35,Lester,Jaida,Inside Sales Coordinator,1977-12-15,2006-07-11,3K9BPW,Nepal,9880758190,1.0
+36,Baxter,Clayton,Inside Sales Coordinator,1960-10-19,1985-12-19,86EC4,Iran,2570837163,1.0
+37,Contreras,Abbie,Sales Representative,1957-08-24,1982-10-20,93T0WA,Israel,7220863404,2.0
+38,Ware,Amirah,Sales Representative,1971-09-24,1996-03-01,366982,"Korea, South",6291189942,3.0
+39,Velazquez,Moriah,Sales Representative,1959-04-16,1981-09-27,9261G2,Vietnam,3316639025,4.0
+40,Morrow,Joyce,Sales Representative,1973-12-25,1995-10-07,H10075,Uzbekistan,5783833026,5.0
+41,Howell,Aspen,Sales Representative,1977-08-02,2004-05-17,31B8VG,Iran,8256848645,6.0
+42,Cunningham,Marcelo,Sales Representative,1980-07-22,2006-01-19,5C3O98,Czech Republic,9508013369,7.0
+43,Stark,Hayden,Sales Representative,1964-07-27,1985-09-17,5055U8,Belarus,3388152539,8.0
+44,Bruce,Jasper,Sales Representative,1996-02-25,2017-01-11,QX794,Central African Republic,4763974540,9.0
+45,Woods,Jair,Sales Representative,1981-05-01,2008-09-15,8Y7607,Central African Republic,6378911243,10.0
+46,Mayo,Memphis,Sales Representative,1971-03-25,2000-07-30,154Y6,Sri Lanka,3071484564,11.0
+47,Mack,Nola,Sales Representative,1951-04-26,1974-04-10,66C68,Pakistan,4178746869,12.0
+48,Russo,Reese,Sales Representative,1951-06-30,1976-01-13,85Q81,Romania,9613967283,13.0
+49,Roach,Nathan,Sales Representative,1956-12-13,1986-08-20,3PQ25,Greece,9863155966,14.0
+50,Dickson,Alden,Sales Representative,1997-10-31,2025-03-07,0Y524B,The Bahamas,4050117201,15.0
+51,Kramer,Beckett,Sales Representative,1975-06-25,2000-09-21,98N19,Malaysia,4845883969,16.0
+52,Solis,Isai,Sales Representative,1961-09-21,1990-04-11,5U71BW,South Africa,3099220611,17.0
+53,Duncan,Savion,Sales Representative,1986-09-19,2006-10-24,84U13,Norway,7679038678,18.0
+54,Jimenez,Jazlynn,Sales Representative,1986-10-31,2016-04-02,25430,Thailand,5100680137,19.0
+55,Cannon,Amelia,Sales Representative,1954-09-05,1977-04-24,693B6,Bhutan,4506504671,20.0
+56,Brock,Jonas,Sales Representative,1997-09-23,2022-02-26,5T8714,The Bahamas,5902516313,21.0
+57,Walters,Skylar,Sales Representative,1987-10-07,2007-11-09,7845U,Bolivia,8820424471,22.0
+58,Landry,Gaven,Sales Representative,1961-06-21,1989-11-07,M91C9R,South Africa,5323082524,23.0
+59,Bowers,Deshawn,Sales Representative,1963-10-12,1993-03-29,3H5215,Canada,4430884871,24.0
+60,Stanton,Kimberly,Sales Representative,1950-07-14,1976-02-29,770438,Spain,7430549527,25.0
+61,Tapia,Azul,Sales Representative,1981-08-19,2006-06-12,P64A1,Romania,6152436795,26.0
+62,Reilly,Kaylen,Sales Representative,1969-06-02,1990-04-22,5V4289,Philippines,6044789436,2.0
+63,Gould,Catherine,Sales Representative,1972-08-02,1999-05-03,691V7,Austria,8925881319,3.0
+64,Cochran,Laci,Sales Representative,1979-05-21,2008-12-24,DX8J47,Finland,8918730754,4.0
+65,Jones,Macie,Sales Representative,1985-09-04,2011-12-12,0T1N34,Thailand,9788835154,5.0
+66,Spears,Kendall,Sales Representative,1999-04-05,2025-01-07,28W706,Czech Republic,8540496222,6.0
+67,Turner,Dereon,Sales Representative,1972-10-14,1999-06-28,047ZD6,Mongolia,6026700361,7.0
+68,Sellers,Chanel,Sales Representative,1981-07-07,2007-03-28,T76RU9,"Korea, South",7428004115,8.0
+69,Golden,Cody,Sales Representative,1985-08-21,2013-07-07,Y6661,Paraguay,3385221549,9.0
+70,Liu,Mckayla,Sales Representative,1987-05-25,2012-02-07,QJU2T,Morocco,8798770741,10.0
+71,Archer,London,Sales Representative,1985-09-29,2009-05-16,782WG,Austria,3608673925,11.0
+72,Snyder,Trinity,Sales Representative,1972-04-05,1993-12-16,853Y76,Mongolia,5673712726,12.0
+73,Lozano,Jace,Sales Representative,1960-10-05,1982-09-19,30S8N,Philippines,1242067209,13.0
+74,Hughes,Jeremiah,Sales Representative,1958-12-14,1984-02-22,6GS4S,Japan,6408994008,14.0
+75,Horn,Bryanna,Sales Representative,1978-04-25,2005-11-15,10R424,Norway,8362534675,15.0
+76,Cortez,Adison,Sales Representative,1980-04-25,2007-06-19,487XR8,Iceland,5166087025,16.0
+77,Cherry,Emely,Sales Representative,1999-02-05,2023-07-04,55OH25,South Africa,7566617218,17.0
+78,Hammond,Riya,Sales Representative,1949-06-26,1972-08-18,8IC85,Croatia,4635316304,18.0
+79,West,Maxwell,Sales Representative,1952-05-27,1979-09-15,4J756,Paraguay,3442723445,19.0
+80,Estes,Leslie,Sales Representative,1953-01-03,1980-11-29,Q293BT,"Korea, North",4943055001,20.0
+81,Travis,Maximilian,Sales Representative,1955-11-23,1977-06-02,22370K,Mexico,7133973101,21.0
+82,Cohen,Braelyn,Sales Representative,1948-10-30,1973-10-21,557GK2,Egypt,6838963649,22.0
+83,Torres,Santino,Sales Representative,1960-04-25,1988-01-29,226F9,Belarus,9340520909,23.0
+84,Whitehead,Johanna,Sales Representative,1989-12-04,2012-11-28,PW9D67,Uganda,4852609834,24.0
+85,Franco,Rylan,Sales Representative,1971-06-17,2000-08-03,387HX7,United Arab Emirates,8958895529,25.0
+86,Flores,Donna,Sales Representative,1963-04-17,1984-09-07,11EA08,Germany,6544523751,26.0
+87,Hamilton,Michaela,Sales Representative,1978-06-02,2001-12-15,15776,Portugal,7637503620,2.0
+88,Hudson,Joslyn,Sales Representative,1961-09-30,1984-06-27,9PK69O,Belarus,4832823381,3.0
+89,Nash,Izayah,Sales Representative,1999-05-20,2029-02-27,8553GZ,Iceland,4526301220,4.0
+90,Pope,Emmanuel,Sales Representative,1980-04-27,2007-07-31,078834,Costa Rica,7292208187,5.0
+91,Glass,Nigel,Sales Representative,1993-02-03,2020-06-15,9508U1,The Bahamas,2375160063,6.0
+92,Hartman,Mckinley,Sales Representative,1993-02-24,2017-01-19,K63QS2,United States,2669140143,7.0
+93,Pace,Nolan,Sales Representative,1960-11-25,1981-02-10,O81Z69,Netherlands,9586770104,8.0
+94,Wagner,Charity,Sales Representative,1950-03-21,1971-11-14,18W4R4,Israel,8782533927,9.0
+95,Stokes,Zaid,Sales Representative,1983-06-23,2011-10-28,71782,Bangladesh,9741865306,10.0
+96,Skinner,Krish,Sales Representative,1997-08-17,2020-11-30,7L7963,Switzerland,3781314127,11.0
+97,Rivers,Gianna,Sales Representative,1985-01-20,2014-10-14,79OU6,Bangladesh,4849303952,12.0
+98,Carney,Virginia,Sales Representative,1993-01-26,2016-09-18,71885,Egypt,3238080485,13.0
+99,Singleton,Nasir,Sales Representative,1987-11-27,2010-11-18,78462,New Zealand,2307672211,14.0
+100,Frey,Sabrina,Sales Representative,1981-06-28,2006-01-09,113G4,Argentina,1427903337,15.0
+101,Hardin,Abraham,Sales Representative,1954-01-28,1978-11-08,11LH8,United Arab Emirates,9711431333,16.0
+102,Crawford,Mila,Sales Representative,1958-08-16,1985-02-05,9X166,United Kingdom,4527314664,17.0
+103,Thornton,Hugh,Sales Representative,1958-11-10,1987-01-05,29UG75,Bangladesh,9127148623,18.0
+104,Maxwell,Kevin,Sales Representative,1963-07-22,1987-08-28,437114,Lebanon,1585934310,19.0
+105,Barton,Clark,Sales Representative,1989-01-20,2013-07-18,98MD6,Russia,9248255539,20.0
+106,Mcintyre,Juan,Sales Representative,1961-04-21,1985-10-15,R25243,Bulgaria,6610241741,21.0
+107,Mccall,Amara,Sales Representative,1959-03-29,1989-03-04,48365,Morocco,8295581742,22.0
+108,Wise,Kyson,Sales Representative,1982-08-13,2010-10-21,85T46,United Arab Emirates,3227193177,23.0
+109,Shields,Shyann,Sales Representative,1958-11-15,1984-07-08,1L81S7,Russia,7909563044,24.0
+110,Werner,Gavyn,Sales Representative,1978-05-26,2001-03-01,2T5R29,Switzerland,1287461248,25.0
+111,Knox,Louis,Sales Representative,1960-12-08,1984-01-22,67Y34,Mexico,5082976575,26.0
+112,Glenn,Rosa,Sales Representative,1970-01-19,1990-03-02,E0914,Russia,6101872347,2.0
+113,Miles,Carter,Sales Representative,1988-07-15,2008-12-09,110139,Ethiopia,7827919031,3.0
+114,Guerrero,Alexandra,Sales Representative,1972-11-06,1996-12-09,1H027,Ukraine,9149252723,4.0
+115,Burns,Harold,Sales Representative,1975-10-22,1996-07-01,K55X1,Bulgaria,5580275396,5.0
+116,Rangel,Tristan,Sales Representative,1981-05-17,2011-02-23,549C9,Poland,4344440874,6.0
+117,Richard,Justice,Sales Representative,1970-04-06,1991-12-06,RPJ40,Brazil,7853718807,7.0
+118,Mayer,Teagan,Sales Representative,1996-10-03,2017-02-04,2I494,Belgium,5348326701,8.0
+119,Nelson,Shyla,Sales Representative,1954-04-01,1983-05-05,Y9780,Nepal,8458034388,9.0
+120,Fernandez,Edwin,Sales Representative,1980-12-19,2008-12-18,28S53,Iraq,4616102917,10.0
+121,Deleon,Lilly,Sales Representative,1992-04-14,2015-12-18,8316M,United Kingdom,2261909063,11.0
+122,Reeves,Braylen,Sales Representative,1970-08-02,1995-02-10,034740,United States,8712800095,12.0
+123,Larson,Hailie,Sales Representative,1986-07-28,2010-02-11,023681,Germany,1899996674,13.0
+124,Mcfarland,Tyler,Sales Representative,1998-07-26,2020-07-21,52523Z,Denmark,4922756847,14.0
+125,Gallegos,Anahi,Sales Representative,1953-02-28,1979-09-01,92X5E,Romania,3791634048,15.0
+126,Spencer,Heather,Sales Representative,1960-12-15,1985-05-23,184W3N,France,6071623222,16.0
+127,Branch,Steven,Sales Representative,1986-11-25,2007-07-14,T490R5,Dominican Republic,3385147719,17.0
+128,Munoz,Maya,Sales Representative,1988-05-09,2014-06-30,3K9P2,Spain,3270315060,18.0
+129,Kent,Ivy,Sales Representative,1960-05-09,1982-03-22,C5324Z,Indonesia,6398167855,19.0
+130,Atkinson,Trace,Sales Representative,1981-05-09,2005-01-15,PF2L92,Iceland,7815259258,20.0
+131,Zimmerman,Jay,Sales Representative,1989-09-06,2016-01-16,49Y38,Sri Lanka,3891330732,21.0
+132,Keith,Dax,Sales Representative,1972-04-15,1995-10-21,89A7H,Denmark,4412148230,22.0
+133,Tucker,Octavio,Sales Representative,1991-07-04,2020-01-15,798AC,Canada,8008406936,23.0
+134,Mcclain,Ronald,Sales Representative,1996-09-02,2024-07-30,4U76Q2,Mongolia,2132757860,24.0
+135,Farley,Anup,Sales Representative,1973-04-14,2000-03-10,0LI74,Israel,3181916100,25.0
+136,Pokemon,Pushkaraj,Sales Representative,1974-06-02,2000-08-26,SW152,Belgium,3470646725,26.0

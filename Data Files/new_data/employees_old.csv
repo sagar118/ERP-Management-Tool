@@ -1,0 +1,137 @@
+id,last_name,first_name,title,birthdate,hire_date,postal_code,country,contact,reports_to
+1,Fitzgerald,Gunnar,Sales Representative,8/4/56,9/18/85,907R02,Iceland,5514625394,20
+2,King,Daisy,Sales Representative,6/26/92,4/22/17,M5388A,United Arab Emirates,1622590717,63
+3,Esparza,Lesly,Sales Manager,9/23/54,1/13/75,2F365L,Turkey,1758615552,7
+4,Merritt,Shiloh,Sales Manager,5/11/57,11/1/84,27TM3,Argentina,2042725721,7
+5,Mcmillan,Elian,Sales Manager,12/27/86,5/26/12,4586R,Germany,6513191729,7
+6,Harris,Gemma,Inside Sales Coordinator,1/7/88,8/13/13,YZ286K,Saudi Arabia,2353232388,7
+7,Whitney,Sidney,"Vice President, Sales",2/20/98,5/8/23,N3944,Philippines,2347431306,
+8,Mcpherson,Carlos,Sales Representative,5/7/96,1/29/26,C434P,Bhutan,5734600932,30
+9,Chavez,Sarah,Inside Sales Coordinator,8/3/76,11/6/98,1BAF5,Norway,7785744865,7
+10,Lowe,Iliana,Sales Representative,9/15/79,2/18/06,25555V,Bolivia,4245293035,65
+11,Freeman,Oscar,Inside Sales Coordinator,12/9/89,5/11/15,83X69,Belgium,2941417884,7
+12,Escobar,Jayden,Sales Representative,5/9/62,12/6/90,A8W800,Iran,3926860888,19
+13,Mcbride,Elisha,Sales Manager,9/28/63,2/24/91,1T071,Sri Lanka,7988811054,7
+14,Daniel,Lorena,Sales Representative,9/6/84,5/12/13,833541,Ukraine,2068851661,28
+15,Morgan,Sam,Inside Sales Coordinator,7/27/51,10/29/75,YTG168,Croatia,8603292483,7
+16,Ramirez,Gerardo,Sales Representative,12/26/81,4/14/04,9W1453,Bulgaria,8016383674,30
+17,Leon,Matilda,Sales Representative,1/18/74,12/6/98,5D022Y,Iceland,4306764285,19
+18,Lam,Paxton,Sales Representative,8/1/77,5/23/00,L0G69,Iceland,6233647355,34
+19,Howe,Daniella,Sales Manager,12/5/85,11/27/06,15770,Argentina,8949348628,7
+20,Miller,Nathalia,Sales Manager,7/23/81,11/8/10,R52NZ,Ireland,4800234833,7
+21,Larsen,Leilani,Sales Manager,4/19/48,7/26/72,9W549,Dominican Republic,4787001182,7
+22,Duarte,Randy,Inside Sales Coordinator,2/3/68,5/5/90,2ZY66W,Argentina,5483991969,7
+23,Noble,Rohan,Sales Representative,5/14/91,8/7/11,58608G,Iran,6557913799,3
+24,Harper,Immanuel,Sales Representative,3/16/89,12/7/09,64481,Lithuania,9721891804,42
+25,Giles,Phoenix,Inside Sales Coordinator,9/1/92,4/21/22,8JX6Q,Czech Republic,3332455827,7
+26,Maldonado,Carolina,Sales Manager,7/1/83,3/25/05,98191,Ghana,4328601850,7
+27,Medina,Dominique,Sales Manager,8/15/63,7/14/91,04610Q,Norway,7044894905,7
+28,Hoffman,Raquel,Sales Manager,6/27/92,1/10/21,5848V0,Poland,3289031091,7
+29,Mclaughlin,Haleigh,Sales Representative,6/24/67,1/18/92,80HJ86,Poland,4379341468,42
+30,Farrell,Cason,Sales Manager,5/2/80,7/16/08,069T4R,Singapore,8546456111,7
+31,Boyle,Kaitlynn,Sales Manager,5/7/64,2/14/86,W8005,Bulgaria,7144211144,7
+32,Villegas,Rose,Sales Representative,9/23/72,9/4/00,O2V29,Italy,1960504084,28
+33,Hurst,Jose,Sales Representative,3/5/57,2/16/80,763T0T,Dominican Republic,2001207616,63
+34,Bonilla,Judah,Sales Manager,7/28/54,11/13/81,4Q5VAI,Estonia,3350926170,7
+35,Lester,Jaida,Sales Representative,12/15/77,7/11/06,3K9BPW,Nepal,9880758190,36
+36,Baxter,Clayton,Sales Manager,10/19/60,12/19/85,86EC4,Iran,2570837163,7
+37,Contreras,Abbie,Inside Sales Coordinator,8/24/57,10/20/82,93T0WA,Israel,7220863404,7
+38,Ware,Amirah,Inside Sales Coordinator,9/24/71,3/1/96,366982,"Korea, South",6291189942,7
+39,Velazquez,Moriah,Sales Representative,4/16/59,9/27/81,9261G2,Vietnam,3316639025,20
+40,Morrow,Joyce,Inside Sales Coordinator,12/25/73,10/7/95,H10075,Uzbekistan,5783833026,7
+41,Howell,Aspen,Sales Manager,8/2/77,5/17/04,31B8VG,Iran,8256848645,7
+42,Cunningham,Marcelo,Sales Manager,7/22/80,1/19/06,5C3O98,Czech Republic,9508013369,7
+43,Stark,Hayden,Sales Representative,7/27/64,9/17/85,5055U8,Belarus,3388152539,41
+44,Bruce,Jasper,Inside Sales Coordinator,2/25/96,1/11/17,QX794,Central African Republic,4763974540,7
+45,Woods,Jair,Sales Manager,5/1/81,9/15/08,8Y7607,Central African Republic,6378911243,7
+46,Mayo,Memphis,Sales Manager,3/25/71,7/30/00,154Y6,Sri Lanka,3071484564,7
+47,Mack,Nola,Sales Manager,4/26/51,4/10/74,66C68,Pakistan,4178746869,7
+48,Russo,Reese,Sales Representative,6/30/51,1/13/76,85Q81,Romania,9613967283,31
+49,Roach,Nathan,Sales Representative,12/13/56,8/20/86,3PQ25,Greece,9863155966,19
+50,Dickson,Alden,Sales Manager,10/31/97,3/7/25,0Y524B,The Bahamas,4050117201,7
+51,Kramer,Beckett,Sales Representative,6/25/75,9/21/00,98N19,Malaysia,4845883969,58
+52,Solis,Isai,Sales Representative,9/21/61,4/11/90,5U71BW,South Africa,3099220611,21
+53,Duncan,Savion,Sales Representative,9/19/86,10/24/06,84U13,Norway,7679038678,61
+54,Jimenez,Jazlynn,Sales Representative,10/31/86,4/2/16,25430,Thailand,5100680137,61
+55,Cannon,Amelia,Sales Representative,9/5/54,4/24/77,693B6,Bhutan,4506504671,61
+56,Brock,Jonas,Sales Representative,9/23/97,2/26/22,5T8714,The Bahamas,5902516313,46
+57,Walters,Skylar,Sales Representative,10/7/87,11/9/07,7845U,Bolivia,8820424471,21
+58,Landry,Gaven,Sales Manager,6/21/61,11/7/89,M91C9R,South Africa,5323082524,7
+59,Bowers,Deshawn,Sales Representative,10/12/63,3/29/93,3H5215,Canada,4430884871,42
+60,Stanton,Kimberly,Sales Representative,7/14/50,2/29/76,770438,Spain,7430549527,62
+61,Tapia,Azul,Sales Manager,8/19/81,6/12/06,P64A1,Romania,6152436795,7
+62,Reilly,Kaylen,Sales Manager,6/2/69,4/22/90,5V4289,Philippines,6044789436,7
+63,Gould,Catherine,Sales Manager,8/2/72,5/3/99,691V7,Austria,8925881319,7
+64,Cochran,Laci,Sales Representative,5/21/79,12/24/08,DX8J47,Finland,8918730754,62
+65,Jones,Macie,Sales Manager,9/4/85,12/12/11,0T1N34,Thailand,9788835154,7
+66,Spears,Kendall,Sales Representative,4/5/99,1/7/25,28W706,Czech Republic,8540496222,5
+67,Turner,Dereon,Sales Representative,10/14/72,6/28/99,047ZD6,Mongolia,6026700361,4
+68,Sellers,Chanel,Sales Representative,7/7/81,3/28/07,T76RU9,"Korea, South",7428004115,62
+69,Golden,Cody,Sales Representative,8/21/85,7/7/13,Y6661,Paraguay,3385221549,62
+70,Liu,Mckayla,Sales Representative,5/25/87,2/7/12,QJU2T,Morocco,8798770741,20
+71,Archer,London,Sales Representative,9/29/85,5/16/09,782WG,Austria,3608673925,5
+72,Snyder,Trinity,Sales Representative,4/5/72,12/16/93,853Y76,Mongolia,5673712726,5
+73,Lozano,Jace,Sales Representative,10/5/60,9/19/82,30S8N,Philippines,1242067209,27
+74,Hughes,Jeremiah,Sales Representative,12/14/58,2/22/84,6GS4S,Japan,6408994008,65
+75,Horn,Bryanna,Sales Representative,4/25/78,11/15/05,10R424,Norway,8362534675,3
+76,Cortez,Adison,Sales Representative,4/25/80,6/19/07,487XR8,Iceland,5166087025,46
+77,Cherry,Emely,Sales Representative,2/5/99,7/4/23,55OH25,South Africa,7566617218,26
+78,Hammond,Riya,Sales Representative,6/26/49,8/18/72,8IC85,Croatia,4635316304,4
+79,West,Maxwell,Sales Representative,5/27/52,9/15/79,4J756,Paraguay,3442723445,42
+80,Estes,Leslie,Sales Representative,1/3/53,11/29/80,Q293BT,"Korea, North",4943055001,28
+81,Travis,Maximilian,Sales Representative,11/23/55,6/2/77,22370K,Mexico,7133973101,61
+82,Cohen,Braelyn,Sales Representative,10/30/48,10/21/73,557GK2,Egypt,6838963649,3
+83,Torres,Santino,Sales Representative,4/25/60,1/29/88,226F9,Belarus,9340520909,46
+84,Whitehead,Johanna,Sales Representative,12/4/89,11/28/12,PW9D67,Uganda,4852609834,31
+85,Franco,Rylan,Sales Representative,6/17/71,8/3/00,387HX7,United Arab Emirates,8958895529,31
+86,Flores,Donna,Sales Representative,4/17/63,9/7/84,11EA08,Germany,6544523751,41
+87,Hamilton,Michaela,Sales Representative,6/2/78,12/15/01,15776,Portugal,7637503620,34
+88,Hudson,Joslyn,Sales Representative,9/30/61,6/27/84,9PK69O,Belarus,4832823381,58
+89,Nash,Izayah,Sales Representative,5/20/99,2/27/29,8553GZ,Iceland,4526301220,58
+90,Pope,Emmanuel,Sales Representative,4/27/80,7/31/07,78834,Costa Rica,7292208187,45
+91,Glass,Nigel,Sales Representative,2/3/93,6/15/20,9508U1,The Bahamas,2375160063,13
+92,Hartman,Mckinley,Sales Representative,2/24/93,1/19/17,K63QS2,United States,2669140143,36
+93,Pace,Nolan,Sales Representative,11/25/60,2/10/81,O81Z69,Netherlands,9586770104,13
+94,Wagner,Charity,Sales Representative,3/21/50,11/14/71,18W4R4,Israel,8782533927,47
+95,Stokes,Zaid,Sales Representative,6/23/83,10/28/11,71782,Bangladesh,9741865306,13
+96,Skinner,Krish,Sales Representative,8/17/97,11/30/20,7L7963,Switzerland,3781314127,45
+97,Rivers,Gianna,Sales Representative,1/20/85,10/14/14,79OU6,Bangladesh,4849303952,63
+98,Carney,Virginia,Sales Representative,1/26/93,9/18/16,71885,Egypt,3238080485,47
+99,Singleton,Nasir,Sales Representative,11/27/87,11/18/10,78462,New Zealand,2307672211,50
+100,Frey,Sabrina,Sales Representative,6/28/81,1/9/06,113G4,Argentina,1427903337,41
+101,Hardin,Abraham,Sales Representative,1/28/54,11/8/78,11LH8,United Arab Emirates,9711431333,21
+102,Crawford,Mila,Sales Representative,8/16/58,2/5/85,9X166,United Kingdom,4527314664,21
+103,Thornton,Hugh,Sales Representative,11/10/58,1/5/87,29UG75,Bangladesh,9127148623,36
+104,Maxwell,Kevin,Sales Representative,7/22/63,8/28/87,437114,Lebanon,1585934310,27
+105,Barton,Clark,Sales Representative,1/20/89,7/18/13,98MD6,Russia,9248255539,13
+106,Mcintyre,Juan,Sales Representative,4/21/61,10/15/85,R25243,Bulgaria,6610241741,58
+107,Mccall,Amara,Sales Representative,3/29/59,3/4/89,48365,Morocco,8295581742,4
+108,Wise,Kyson,Sales Representative,8/13/82,10/21/10,85T46,United Arab Emirates,3227193177,27
+109,Shields,Shyann,Sales Representative,11/15/58,7/8/84,1L81S7,Russia,7909563044,41
+110,Werner,Gavyn,Sales Representative,5/26/78,3/1/01,2T5R29,Switzerland,1287461248,65
+111,Knox,Louis,Sales Representative,12/8/60,1/22/84,67Y34,Mexico,5082976575,47
+112,Glenn,Rosa,Sales Representative,1/19/70,3/2/90,E0914,Russia,6101872347,30
+113,Miles,Carter,Sales Representative,7/15/88,12/9/08,110139,Ethiopia,7827919031,28
+114,Guerrero,Alexandra,Sales Representative,11/6/72,12/9/96,1H027,Ukraine,9149252723,34
+115,Burns,Harold,Sales Representative,10/22/75,7/1/96,K55X1,Bulgaria,5580275396,47
+116,Rangel,Tristan,Sales Representative,5/17/81,2/23/11,549C9,Poland,4344440874,50
+117,Richard,Justice,Sales Representative,4/6/70,12/6/91,RPJ40,Brazil,7853718807,50
+118,Mayer,Teagan,Sales Representative,10/3/96,2/4/17,2I494,Belgium,5348326701,31
+119,Nelson,Shyla,Sales Representative,4/1/54,5/5/83,Y9780,Nepal,8458034388,36
+120,Fernandez,Edwin,Sales Representative,12/19/80,12/18/08,28S53,Iraq,4616102917,5
+121,Deleon,Lilly,Sales Representative,4/14/92,12/18/15,8316M,United Kingdom,2261909063,50
+122,Reeves,Braylen,Sales Representative,8/2/70,2/10/95,34740,United States,8712800095,45
+123,Larson,Hailie,Sales Representative,7/28/86,2/11/10,23681,Germany,1899996674,30
+124,Mcfarland,Tyler,Sales Representative,7/26/98,7/21/20,52523Z,Denmark,4922756847,45
+125,Gallegos,Anahi,Sales Representative,2/28/53,9/1/79,92X5E,Romania,3791634048,4
+126,Spencer,Heather,Sales Representative,12/15/60,5/23/85,184W3N,France,6071623222,26
+127,Branch,Steven,Sales Representative,11/25/86,7/14/07,T490R5,Dominican Republic,3385147719,20
+128,Munoz,Maya,Sales Representative,5/9/88,6/30/14,3K9P2,Spain,3270315060,65
+129,Kent,Ivy,Sales Representative,5/9/60,3/22/82,C5324Z,Indonesia,6398167855,26
+130,Atkinson,Trace,Sales Representative,5/9/81,1/15/05,PF2L92,Iceland,7815259258,63
+131,Zimmerman,Jay,Sales Representative,9/6/89,1/16/16,49Y38,Sri Lanka,3891330732,34
+132,Keith,Dax,Sales Representative,4/15/72,10/21/95,89A7H,Denmark,4412148230,46
+133,Tucker,Octavio,Sales Representative,7/4/91,1/15/20,798AC,Canada,8008406936,27
+134,Mcclain,Ronald,Sales Representative,9/2/96,7/30/24,4U76Q2,Mongolia,2132757860,3
+135,Farley,Anup,Sales Representative,4/14/73,3/10/00,0LI74,Israel,3181916100,19
+136,Pokemon,Pushkaraj,Sales Representative,6/2/74,8/26/00,SW152,Belgium,3470646725,26
