@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 
 
 def app():
-    use_cases = ["Custom Order Details", "Employee Order Details", "Discontinued Product Orders", "Delivery Lag Analysis","Popular Categories", "Employee Hierarchy"]
+    use_cases = ["Customer Order Details", "Employee Order Details", "Discontinued Product Orders", "Delivery Lag Analysis","Popular Categories", "Employee Hierarchy"]
     # use_cases.sort()
     table = st.sidebar.selectbox("Select Use Case", use_cases, on_change= reset_page)
     if (table == 'Customer Order Details'):
@@ -39,6 +39,10 @@ def reset_page():
     st.session_state.page_number = 0
 
 def call_customers(table_name):
+
+    if 'page_number' not in st.session_state:
+        st.session_state.page_number = 0
+
     cur.execute(f'SELECT ID, NAME FROM {table_name}')
     colnames = [desc[0] for desc in cur.description]
     customers = []
@@ -116,12 +120,41 @@ def call_customers(table_name):
     colnames = [desc[0] for desc in cur.description]
     result = cur.fetchall()
     result = pd.DataFrame(result, columns=colnames)
-    st.table(result)
+
+    n = 20
+    last_page = len(result) // n
+    if(len(result) > 20):
+        prev, _ ,next = st.columns([1, 10, 1])
+        if next.button("Next"):
+            if st.session_state.page_number + 1 > last_page:
+                st.session_state.page_number = 0
+            else:
+                st.session_state.page_number += 1
+
+        if prev.button("Previous"):
+
+            if st.session_state.page_number - 1 < 0:
+                st.session_state.page_number = last_page
+            else:
+                st.session_state.page_number -= 1
+
+        start_idx = st.session_state.page_number * n 
+        end_idx = (1 + st.session_state.page_number) * n
+    
+    if(len(result) > 20):
+        sub_df = result.iloc[start_idx:end_idx]
+        st.table(sub_df)
+    else:
+        st.table(result)
     fig = px.bar(result, x="order_date", y="total_price", color="shippers_name")
     st.plotly_chart(fig, use_container_width=True)
 
 
 def call_employee_order_details():
+
+    if 'page_number' not in st.session_state:
+        st.session_state.page_number = 0
+
     cur.execute(f'SELECT ID, FIRST_NAME, LAST_NAME FROM EMPLOYEES')
     colnames = [desc[0] for desc in cur.description]
     employees = []
@@ -215,7 +248,32 @@ def call_employee_order_details():
     colnames = [desc[0] for desc in cur.description]
     result = cur.fetchall()
     result = pd.DataFrame(result, columns=colnames)
-    st.table(result)
+
+    n = 20
+    last_page = len(result) // n
+    if(len(result) > 20):
+        prev, _ ,next = st.columns([1, 10, 1])
+        if next.button("Next"):
+            if st.session_state.page_number + 1 > last_page:
+                st.session_state.page_number = 0
+            else:
+                st.session_state.page_number += 1
+
+        if prev.button("Previous"):
+
+            if st.session_state.page_number - 1 < 0:
+                st.session_state.page_number = last_page
+            else:
+                st.session_state.page_number -= 1
+
+        start_idx = st.session_state.page_number * n 
+        end_idx = (1 + st.session_state.page_number) * n
+    
+    if(len(result) > 20):
+        sub_df = result.iloc[start_idx:end_idx]
+        st.table(sub_df)
+    else:
+        st.table(result)
     fig = px.bar(result, x="order_date", y="total_price", color="shippers_name")
     st.plotly_chart(fig, use_container_width=True)
 
