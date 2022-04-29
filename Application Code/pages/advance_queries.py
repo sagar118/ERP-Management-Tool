@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 
 
 def app():
-    use_cases = ["Custom Order Details", "Employee Order Details", "Discontinued Product Orders", "Delivery Lag Analysis","Popular Categories", "Employee Hierarchy"]
+    use_cases = ["Customer Order Details", "Employee Order Details", "Discontinued Product Orders", "Delivery Lag Analysis","Popular Categories", "Employee Hierarchy"]
     # use_cases.sort()
     table = st.sidebar.selectbox("Select Use Case", use_cases, on_change= reset_page)
     if (table == 'Customer Order Details'):
