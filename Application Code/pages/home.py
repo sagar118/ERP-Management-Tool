@@ -195,16 +195,20 @@ def delete_values(table):
     print("Values: ",values)
     delete_condition = ''
     for i, col in enumerate(delete_columns):
-        if equality[i].strip().lower() == 'in':
+        if equality[i].strip().lower() in ['in', 'i', 'n']:
             in_value = ",".join(["'" + value.strip() + "'" for value in str(values[i]).split(",")]) if len(values[i].strip()) > 1 else values[i].strip()
-            delete_condition += " "+col+" "+ equality[i] +" ("+in_value+") "
+            equality[i] = ''.join(equality[i].split())
+            delete_condition += " "+col+" "+ "IN" +" ("+in_value+") "
         elif equality[i].strip().lower() in ['between', 'betwen', 'betwin', 'btw', 'betwin', 'betwee', 'btween']:
             between_value = ["'" + value.strip() + "'" for value in str(values[i]).split(",")]
             print(between_value, len(between_value))
-            delete_condition += " "+col+" "+ equality[i] +" "+between_value[0]+" AND "+between_value[1]
+            equality[i] = ''.join(equality[i].split())
+            delete_condition += " "+col+" "+ "BETWEEN" +" "+between_value[0]+" AND "+between_value[1]
         else:
+            equality[i] = ''.join(equality[i].split())
             delete_condition += " "+col+" "+ equality[i] +" '"+str(values[i])+"' "
         if(i < len(delete_columns) - 1):
+            condition[i] = ''.join(condition[i].split())
             delete_condition += condition[i]
     # delete_condition = delete_condition.rsplit(' ', 1)[0]
     print("DELETE FROM "+ table + " WHERE "+delete_condition)
@@ -276,16 +280,20 @@ def update_values(table):
     set_string = set_string[:-1]
     
     for i, col in enumerate(col_update_colname):
-        if equality[i].strip().lower() == 'in':
+        if equality[i].strip().lower() in ['in', 'i', 'n']:
             in_value = ",".join(["'" + value.strip() + "'" for value in str(col_update_value[i]).split(",")]) if len(col_update_value[i].strip()) > 1 else col_update_value[i].strip()
-            where_string += " "+col+" "+ equality[i] +" ("+in_value+") "
+            equality[i] = ''.join(equality[i].split())
+            where_string += " "+col+" "+ "in" +" ("+in_value+") "
         elif equality[i].strip().lower() in ['between', 'betwen', 'betwin', 'btw', 'betwin', 'betwee', 'btween']:
             between_value = ["'" + value.strip() + "'" for value in str(col_update_value[i]).split(",")]
             print(between_value, len(between_value))
-            where_string += " "+col+" "+ equality[i] +" "+between_value[0]+" AND "+between_value[1]
+            equality[i] = ''.join(equality[i].split())
+            where_string += " "+col+" "+ "between" +" "+between_value[0]+" AND "+between_value[1]
         else:
+            equality[i] = ''.join(equality[i].split())
             where_string += " "+col+" "+ equality[i] +" '"+str(col_update_value[i])+"' "
         if i < len(col_update_condition):
+            col_update_condition[i] = ''.join(col_update_condition[i].split())
             where_string += ' ' + col_update_condition[i] + ' '
     # delete_condition = delete_condition.rsplit(' ', 1)[0]
     print("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
