@@ -454,4 +454,6 @@ def call_employee_hierarchy():
                     result.loc[j,'string_agg'] = result.loc[j,'string_agg'].replace(sub_string, '').replace(',,', ',')
                     result.loc[j,'string_agg'] = result.loc[j,'string_agg'].lstrip(',')
                     result.loc[j,'string_agg'] = result.loc[j,'string_agg'].rstrip(',')
+
+    st.write('Employee Hierarchy: 0 - Vice President, 1 - Employee Reporting to VP, 2 - Employee to Employee')
     st.table(result)
