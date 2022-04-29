@@ -198,7 +198,7 @@ def delete_values(table):
         if equality[i].strip().lower() == 'in':
             in_value = ",".join(["'" + value.strip() + "'" for value in str(values[i]).split(",")]) if len(values[i].strip()) > 1 else values[i].strip()
             delete_condition += " "+col+" "+ equality[i] +" ("+in_value+") "
-        elif equality[i].strip().lower() == 'between':
+        elif equality[i].strip().lower() in ['between', 'betwen', 'betwin', 'btw', 'betwin', 'betwee', 'btween']:
             between_value = ["'" + value.strip() + "'" for value in str(values[i]).split(",")]
             print(between_value, len(between_value))
             delete_condition += " "+col+" "+ equality[i] +" "+between_value[0]+" AND "+between_value[1]
@@ -279,7 +279,7 @@ def update_values(table):
         if equality[i].strip().lower() == 'in':
             in_value = ",".join(["'" + value.strip() + "'" for value in str(col_update_value[i]).split(",")]) if len(col_update_value[i].strip()) > 1 else col_update_value[i].strip()
             where_string += " "+col+" "+ equality[i] +" ("+in_value+") "
-        elif equality[i].strip().lower() == 'between':
+        elif equality[i].strip().lower() in ['between', 'betwen', 'betwin', 'btw', 'betwin', 'betwee', 'btween']:
             between_value = ["'" + value.strip() + "'" for value in str(col_update_value[i]).split(",")]
             print(between_value, len(between_value))
             where_string += " "+col+" "+ equality[i] +" "+between_value[0]+" AND "+between_value[1]
