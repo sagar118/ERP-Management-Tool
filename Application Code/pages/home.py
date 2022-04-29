@@ -141,7 +141,7 @@ def insert_values(table):
     print("INSERT INTO "+ table + " (" + col_string + ") VALUES " + placeholders.format(tuple(values)))
     # print(st.session_state.insert)
     cur.execute("INSERT INTO "+ table + " (" + col_string + ") VALUES " + placeholders, values)
-    conn.commit
+    conn.commit()
 
 
 def delete_table_details(table):
@@ -210,7 +210,7 @@ def delete_values(table):
     print("DELETE FROM "+ table + " WHERE "+delete_condition)
     # print(st.session_state.insert)
     cur.execute("DELETE FROM "+ table + " WHERE "+delete_condition)
-    conn.commit
+    conn.commit()
 
 def update_table_details(table):
     print('Inside Update: ', table)
@@ -291,4 +291,4 @@ def update_values(table):
     print("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
     # print(st.session_state.insert)
     cur.execute("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
-    conn.commit
+    conn.commit()
