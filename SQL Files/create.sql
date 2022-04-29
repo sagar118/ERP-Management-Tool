@@ -114,6 +114,20 @@ quantity int not NULL,
 discount FLOAT DEFAULT 0
 );
 
+CREATE INDEX orders_shipper_id ON orders (shipper_id);
+
+CREATE INDEX orders_customer_id ON orders (customer_id);
+
+CREATE INDEX orders_employee_id ON orders (employee_id);
+
+CREATE INDEX order_details_order_id ON order_details (order_id);
+
+CREATE INDEX order_details_product_id ON order_details (product_id);
+
+CREATE INDEX products_category_id ON products (category_id);
+
+CREATE INDEX products_supplier_id ON products (supplier_id);
+
 CREATE OR REPLACE FUNCTION insert_random_territory()
   RETURNS trigger AS
 $$
