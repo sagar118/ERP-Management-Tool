@@ -113,3 +113,26 @@ unit_price FLOAT NOT NULL,
 quantity int not NULL,
 discount FLOAT DEFAULT 0
 );
+
+CREATE OR REPLACE FUNCTION insert_random_territory()
+  RETURNS trigger AS
+$$
+DECLARE
+territory_id INTEGER;
+BEGIN
+		 SELECT into territory_id id FROM territories ORDER BY random() LIMIT 1;
+		 
+         INSERT INTO employee_territories
+         VALUES(NEW.id, territory_id);
+ 
+    RETURN NEW;
+END;
+$$
+LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER employee_terriroty
+  AFTER INSERT
+  ON employees
+  FOR EACH ROW
+  EXECUTE PROCEDURE insert_random_territory();
