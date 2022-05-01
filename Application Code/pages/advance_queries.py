@@ -435,13 +435,16 @@ def call_delivery_lag():
     result = cur.fetchall()
     result = pd.DataFrame(result, columns=colnames)
     st.table(result.head(10))
-
+    fig = px.scatter(result, x="delay", y="total_price")
+    st.plotly_chart(fig, use_container_width=True)
+    
     cur.execute(query2)
     
     colnames = [desc[0] for desc in cur.description]
     result = cur.fetchall()
     result = pd.DataFrame(result, columns=colnames)
-    fig = px.bar(result, x="shipped_date", y="sum_of_price")
+    # fig = px.bar(result, x="shipped_date", y="sum_of_price")
+    fig = px.scatter(result, x="shipped_date", y="sum_of_price")
     st.plotly_chart(fig, use_container_width=True)
     
 def call_popular_categories():
