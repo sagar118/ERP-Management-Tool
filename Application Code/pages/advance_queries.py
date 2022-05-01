@@ -476,51 +476,35 @@ def call_popular_categories():
 
 def call_employee_hierarchy():
     ## Recursive query to get the employee hierarchy
-    
+    ## Query for sales per employee and their managers and the 
     query = """
-    With RECURSIVE employee_hierarchy(id, first_name, last_name, manager_id, level) AS (
-        SELECT
-            id,
-            first_name,
-            last_name,
-            reports_to,
-            0
-        FROM
-            employees
-        UNION ALL
-        SELECT
-            e.id,
-            e.first_name,
-            e.last_name,
-            e.reports_to,
-            eh.level + 1
-        FROM
-            employees e
-        JOIN
-            employee_hierarchy eh ON e.reports_to = eh.id
+    WITH cte AS (
+    SELECT
+        reports_to,
+        STRING_AGG(first_name :: text, ',') AS reportees
+    FROM
+        employees
+    GROUP BY
+        reports_to
     )
-    select level, string_agg(distinct(first_name), ',') from employee_hierarchy group by level order by level desc
+    SELECT
+        t1.id,
+        t1.first_name,
+        t1.last_name,
+        t1.title,
+        t2.reportees
+    FROM
+        employees t1
+        LEFT JOIN cte t2 ON t1.id = t2.reports_to
     """
+    
     cur.execute(query)
     colnames = [desc[0] for desc in cur.description]
     result = cur.fetchall()
     result = pd.DataFrame(result, columns=colnames)
 
-    # This table contains the employee hierarchy, we need to refine the results for the final display.
-    for i in range(len(result)-1):
-        print(i)
-        string1 = result.loc[i,'string_agg']
-        for j in range(i+1, len(result)):
-            string2 = result.loc[j,'string_agg']
-            for sub_string in string2.split(','):
-                if sub_string in string1:
-                    result.loc[j,'string_agg'] = result.loc[j,'string_agg'].replace(sub_string, '').replace(',,', ',')
-                    result.loc[j,'string_agg'] = result.loc[j,'string_agg'].lstrip(',')
-                    result.loc[j,'string_agg'] = result.loc[j,'string_agg'].rstrip(',')
-
-    st.write('Employee Hierarchy: 0 - Vice President, 1 - Employee Reporting to VP, 2 - Employee to Employee')
-    st.table(result)
-
+    st.table(result[result['reportees'].notna()])
+    
 def call_supplier_details():
 
     if 'page_number' not in st.session_state:
