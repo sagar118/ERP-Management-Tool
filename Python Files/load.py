@@ -3,13 +3,13 @@ import pandas as pd
 import numpy as np
 import glob
 
-FILE_DIR = "../Data Files/new_data/"
+FILE_DIR = "../Data Files/"
 
 conn = psycopg2.connect(
     host="localhost",
     database="DMQL_Project",
     user="postgres",
-    password="PostgreSQL#118")
+    password="Devilno7#")
 
 cur = conn.cursor()
 
