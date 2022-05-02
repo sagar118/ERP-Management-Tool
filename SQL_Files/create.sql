@@ -150,3 +150,6 @@ CREATE TRIGGER employee_terriroty
   ON employees
   FOR EACH ROW
   EXECUTE PROCEDURE insert_random_territory();
+
+
+pg_dump -U postgres -W -F p DMQL_Project > /Users/wizard/Desktop/DMQL_Project.sql
