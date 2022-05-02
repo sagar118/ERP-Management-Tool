@@ -94,7 +94,7 @@ def call_customers(table_name):
     order_dates = list(set(result_filters.loc[:,'order_date']))
     order_dates = sorted(order_dates)
     order_date = st.date_input("Order Date", [order_dates[0], order_dates[-1]])
-    print(order_date, type(order_date))
+    # print(order_date, type(order_date))
     where_conditions += " AND o.order_date BETWEEN '"+ str(order_date[0]) +"' and '" + str(order_date[1]) +"'"
 
 
@@ -209,7 +209,7 @@ def call_employee_order_details():
     order_dates = list(set(result_filters.loc[:,'order_date']))
     order_dates = sorted(order_dates)
     order_date = st.date_input("Order Date", [order_dates[0], order_dates[-1]])
-    print(order_date, type(order_date))
+    # print(order_date, type(order_date))
     where_conditions += " AND o.order_date BETWEEN '"+ str(order_date[0]) +"' and '" + str(order_date[1]) +"'"
 
     customer_dict = {}
@@ -299,7 +299,7 @@ def call_discrepancies():
     result = cur.fetchall()
     result = pd.DataFrame(result, columns=colnames)
     product_name = st.selectbox("Select the Product for more details:", result['product_name'])
-    print("Selected Product: ", product_name)
+    # print("Selected Product: ", product_name)
     # st.table(result)
     query = f"""
     select
@@ -324,7 +324,7 @@ def call_discrepancies():
         orders.id
         """
     
-    print(query)
+    # print(query)
     cur.execute(query)
     colnames = [desc[0] for desc in cur.description]
     result = cur.fetchall()

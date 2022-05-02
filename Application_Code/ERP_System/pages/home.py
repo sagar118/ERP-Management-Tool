@@ -40,7 +40,7 @@ def app():
                 st.session_state[col+'_update_value'] = 0
                 st.session_state[col+'_update_condition'] = ''
                 st.session_state[col+'_update_equality'] = ''
-    print(table_name)
+    # print(table_name)
 
     # st.button('Insert', on_click = insert_table_details, args=([table_name]))
     col1, col2 = st.columns([1,0.2])
@@ -102,7 +102,7 @@ def reset_page():
         st.session_state.page_number = 0
 
 def insert_table_details(table):
-    print('Inside Insert: ', table)
+    # print('Inside Insert: ', table)
     with st.form("insert_form", clear_on_submit=True):
         st.write("Enter details:")
         
@@ -111,7 +111,7 @@ def insert_table_details(table):
         values = list()
 
         for col in col_names:
-            print('Inside for loop ',col)
+            # print('Inside for loop ',col)
             if dtypes[col] == 'O':
                 text = st.text_input(col, key= col)
                 # print('Text is: ',text)
@@ -121,7 +121,7 @@ def insert_table_details(table):
                 # print('Number is: ', number)
                 values.append(number)
                 # st.session_state.insert = values
-        print('-'*15)
+        # print('-'*15)
         # print(values)
         submitted = st.form_submit_button("Submit", on_click=insert_values, args=([table]))
     st.button("Cancel")
@@ -130,7 +130,7 @@ def insert_values(table):
     col_names = column_dict[table][0]
     dtypes = column_dict[table][1]
     values = []
-    print('Inside the show values')
+    # print('Inside the show values')
     for col in col_names:
         if st.session_state[col] == 0:
             st.session_state[col] = None
@@ -138,12 +138,12 @@ def insert_values(table):
             st.session_state[col] = None
     for col in col_names:
         values.append(st.session_state[col])
-    print("Values: ",values)
+    # print("Values: ",values)
     
     n_cols = len(col_names)
     col_string = ",".join(col for col in col_names)
     placeholders =  "(" + ("%s,"*n_cols).strip(",") + ")"
-    print("INSERT INTO "+ table + " (" + col_string + ") VALUES " + placeholders.format(tuple(values)))
+    # print("INSERT INTO "+ table + " (" + col_string + ") VALUES " + placeholders.format(tuple(values)))
     # print(st.session_state.insert)
     try:
         cur.execute("INSERT INTO "+ table + " (" + col_string + ") VALUES " + placeholders, values)
@@ -155,7 +155,7 @@ def insert_values(table):
 
 
 def delete_table_details(table):
-    print('Inside Delete: ', table)
+    # print('Inside Delete: ', table)
     with st.form("delete_form", clear_on_submit=True):
         st.write("Enter details:")
         
@@ -178,7 +178,7 @@ def delete_table_details(table):
                 # print('Text is: ',text)
                 values.append(text)
 
-        print('-'*15)
+        # print('-'*15)
         # print(values)
         submitted = st.form_submit_button("Submit", on_click=delete_values, args=([table]))
     st.button("Cancel")
@@ -189,7 +189,7 @@ def delete_values(table):
     values = []
     condition = []
     equality = []
-    print('Inside the show values')
+    # print('Inside the show values')
     delete_columns = []
     for i, col in enumerate(col_names):
         if st.session_state[col] != '':
@@ -202,7 +202,7 @@ def delete_values(table):
 
         
         
-    print("Values: ",values)
+    # print("Values: ",values)
     delete_condition = ''
     for i, col in enumerate(delete_columns):
         if equality[i].strip().lower() in ['in', 'i', 'n']:
@@ -211,7 +211,7 @@ def delete_values(table):
             delete_condition += " "+col+" "+ "IN" +" ("+in_value+") "
         elif equality[i].strip().lower() in ['between', 'betwen', 'betwin', 'btw', 'betwin', 'betwee', 'btween']:
             between_value = ["'" + value.strip() + "'" for value in str(values[i]).split(",")]
-            print(between_value, len(between_value))
+            # print(between_value, len(between_value))
             equality[i] = ''.join(equality[i].split())
             delete_condition += " "+col+" "+ "BETWEEN" +" "+between_value[0]+" AND "+between_value[1]
         else:
@@ -221,7 +221,7 @@ def delete_values(table):
             condition[i] = ''.join(condition[i].split())
             delete_condition += condition[i]
     # delete_condition = delete_condition.rsplit(' ', 1)[0]
-    print("DELETE FROM "+ table + " WHERE "+delete_condition)
+    # print("DELETE FROM "+ table + " WHERE "+delete_condition)
     # print(st.session_state.insert)
     try:
         cur.execute("DELETE FROM "+ table + " WHERE "+delete_condition)
@@ -232,7 +232,7 @@ def delete_values(table):
     conn.commit()
 
 def update_table_details(table):
-    print('Inside Update: ', table)
+    # print('Inside Update: ', table)
     with st.form("update_form", clear_on_submit=True):
         st.write("Enter update details:")
         
@@ -241,13 +241,13 @@ def update_table_details(table):
         values = list()
 
         for col in col_names:
-            print('Inside for loop ',col)
+            # print('Inside for loop ',col)
             text = st.text_input(col, key=col)
             # print('Text is: ',text)
             values.append(text)
         
-        print('-'*15)
-        print('Values is : ', values)
+        # print('-'*15)
+        # print('Values is : ', values)
         st.write("Enter Where column details:")
         for index, col in enumerate(col_names):
             # rand_num1 = np.random.randint(1, 100)
@@ -276,7 +276,7 @@ def update_values(table):
     equality = []
     set_string = ''
     where_string = ''
-    print('Inside the show values')
+    # print('Inside the show values')
     for i, col in enumerate(col_names):
         if st.session_state[col] != '':
             values.append(st.session_state[col])
@@ -301,7 +301,7 @@ def update_values(table):
             where_string += " "+col+" "+ "in" +" ("+in_value+") "
         elif equality[i].strip().lower() in ['between', 'betwen', 'betwin', 'btw', 'betwin', 'betwee', 'btween']:
             between_value = ["'" + value.strip() + "'" for value in str(col_update_value[i]).split(",")]
-            print(between_value, len(between_value))
+            # print(between_value, len(between_value))
             equality[i] = ''.join(equality[i].split())
             where_string += " "+col+" "+ "between" +" "+between_value[0]+" AND "+between_value[1]
         else:
@@ -311,7 +311,7 @@ def update_values(table):
             col_update_condition[i] = ''.join(col_update_condition[i].split())
             where_string += ' ' + col_update_condition[i] + ' '
     # delete_condition = delete_condition.rsplit(' ', 1)[0]
-    print("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
+    # print("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
     # print(st.session_state.insert)
     try:
         cur.execute("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
