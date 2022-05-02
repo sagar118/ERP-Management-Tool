@@ -2,9 +2,11 @@ import psycopg2
 import pandas as pd
 import numpy as np
 import glob
-from ..Application_Code.sql_connect import cur, conn
+import sys
+sys.path.insert(0, 'Application_Code')
+from sql_connect import cur, conn
 
-FILE_DIR = "../Data Files/"
+FILE_DIR = "./Data_Files/"
 
 # conn = psycopg2.connect(
 #     host="localhost",
