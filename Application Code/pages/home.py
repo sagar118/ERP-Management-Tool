@@ -132,6 +132,11 @@ def insert_values(table):
     values = []
     print('Inside the show values')
     for col in col_names:
+        if st.session_state[col] == 0:
+            st.session_state[col] = None
+        if st.session_state[col] == '':
+            st.session_state[col] = None
+    for col in col_names:
         values.append(st.session_state[col])
     print("Values: ",values)
     
@@ -140,7 +145,12 @@ def insert_values(table):
     placeholders =  "(" + ("%s,"*n_cols).strip(",") + ")"
     print("INSERT INTO "+ table + " (" + col_string + ") VALUES " + placeholders.format(tuple(values)))
     # print(st.session_state.insert)
-    cur.execute("INSERT INTO "+ table + " (" + col_string + ") VALUES " + placeholders, values)
+    try:
+        cur.execute("INSERT INTO "+ table + " (" + col_string + ") VALUES " + placeholders, values)
+    except Exception as error:
+        error_msg = error.args
+        message = '<p style="font-family:Courier; color:Red; font-size: 17px;">'+str(error_msg)+'</p><br><p style="font-family:Courier; color:Red; font-size: 17px;">Refresh and try again</p>'
+        st.markdown(message, unsafe_allow_html=True)
     conn.commit()
 
 
@@ -213,7 +223,12 @@ def delete_values(table):
     # delete_condition = delete_condition.rsplit(' ', 1)[0]
     print("DELETE FROM "+ table + " WHERE "+delete_condition)
     # print(st.session_state.insert)
-    cur.execute("DELETE FROM "+ table + " WHERE "+delete_condition)
+    try:
+        cur.execute("DELETE FROM "+ table + " WHERE "+delete_condition)
+    except Exception as error:
+        error_msg = error.args
+        message = '<p style="font-family:Courier; color:Red; font-size: 17px;">'+str(error_msg)+'</p><br><p style="font-family:Courier; color:Red; font-size: 17px;">Refresh and try again</p>'
+        st.markdown(message, unsafe_allow_html=True)
     conn.commit()
 
 def update_table_details(table):
@@ -298,5 +313,10 @@ def update_values(table):
     # delete_condition = delete_condition.rsplit(' ', 1)[0]
     print("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
     # print(st.session_state.insert)
-    cur.execute("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
+    try:
+        cur.execute("UPDATE "+ table + " SET "+set_string + " WHERE "+where_string)
+    except Exception as error:
+        error_msg = error.args
+        message = '<p style="font-family:Courier; color:Red; font-size: 17px;">'+str(error_msg)+'</p><br><p style="font-family:Courier; color:Red; font-size: 17px;">Refresh and try again</p>'
+        st.markdown(message, unsafe_allow_html=True)
     conn.commit()
