@@ -61,7 +61,7 @@ def get_result(filters, table_name, conditions, condition_values, cols_to_print)
                 query +="{} {} '{}' ".format(key, condition, value)
             if joining_value != 'Blank':
                 query += " {} ".format(joining_value)
-    st.write(query)
+    # st.write(query)
     try:
         cur.execute(query)
         colnames = [desc[0] for desc in cur.description]
