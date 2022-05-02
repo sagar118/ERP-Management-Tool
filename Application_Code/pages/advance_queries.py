@@ -299,7 +299,7 @@ def call_discrepancies():
     result = pd.DataFrame(result, columns=colnames)
     product_name = st.selectbox("Select the Product for more details:", result['product_name'])
     print("Selected Product: ", product_name)
-    st.table(result)
+    # st.table(result)
     query = f"""
     select
         orders.id, 

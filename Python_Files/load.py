@@ -8,14 +8,6 @@ from sql_connect import cur, conn
 
 FILE_DIR = "./Data_Files/"
 
-# conn = psycopg2.connect(
-#     host="localhost",
-#     database="DMQL_Project",
-#     user="postgres",
-#     password="Devilno7#")
-
-# cur = conn.cursor()
-
 table_insert_order = ["categories", "categories_description", "post_address_lookup", "supplier", "products", "employees", "territories", "employee_territories", "customers", "shippers", "orders", "order_details"]
 
 # for filepath in glob.glob(FILE_DIR + "*.csv"):
