@@ -2,8 +2,8 @@ import time
 import numpy as np
 import streamlit as st
 import pandas as pd
+# from Application_Code.ERP_System.sql_connect import cur, conn
 from sql_connect import cur, conn
-
 st.session_state.page_number = 0
 st.session_state.submit = False
 st.session_state.insert = []

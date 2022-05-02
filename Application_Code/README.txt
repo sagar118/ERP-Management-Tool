@@ -8,7 +8,13 @@ This file contains the steps to follow in order to run the code.
                         pip3 install virtualenv
     - Now, we will create and activate our environment and name the environment as `dmql2` as follows:
                         virtualenv -p python3 dmql2
+
+                        For Mac users:
                         source dmql2/bin/activate
+
+                        For Windows users:
+                        dmql2\Scripts\activate
+                        
     - After activating the environment, we will install all the packages required.
     - Make sure you are in `Application_Code` directory to run the command. This directory contains the file `requirements.txt` which holds all the packages list
                         pip3 install -r requirements.txt

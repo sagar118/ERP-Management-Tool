@@ -3,10 +3,18 @@ import pandas as pd
 import numpy as np
 import glob
 import sys
-sys.path.insert(0, 'Application_Code')
-from sql_connect import cur, conn
+import os
 
-FILE_DIR = "./Data_Files/"
+conn = psycopg2.connect(
+    host="localhost",
+    database="DMQL_Project",
+    user="postgres",
+    password="Devilno7#")
+
+cur = conn.cursor()
+
+
+FILE_DIR = "../Data_Files/"
 
 table_insert_order = ["categories", "categories_description", "post_address_lookup", "supplier", "products", "employees", "territories", "employee_territories", "customers", "shippers", "orders", "order_details"]
 
