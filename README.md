@@ -72,3 +72,8 @@ In this page we have defined various use cases related to our ERP system. Each u
 <img width="1386" alt="Advance_queries_new" src="https://user-images.githubusercontent.com/24275587/177432921-85df26b5-f068-426d-908a-46abc25fb499.png">
 
 We have also performed query optimization for our system; all the metrics and query can be observed in the report (`CSE560_Milestone2_DCoderz.pdf`).
+
+### Collaborators:
+- Anup Thakkar
+- Pushkaraj Joshi
+- Sagar Thacker
