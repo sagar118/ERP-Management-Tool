@@ -1,4 +1,4 @@
-# ERP System Management
+# ERP Management Tool
 
 ERPs ideally involve complex databases that are carefully managed by a host of database operators or admins. We need to use database systems, because if we use Excel files to maintain the data, then the amount of time needed to make updates to the different related tables will be really complicated and would consume a lot of man-hours, which is expensive. If the number of tables/files is large, then the cost of maintaining the excel files will be prohibitive. This is excluding human error because human maintenance is not the perfect way to deal with large amounts of data. A simple “0” error would cause massive disruptions in the operations and would take a lot of time to correct, which would again mean deploying excess resources for mitigating such issues. A database management system would be a perfect system to maintain an ERP. By defining relations, we would be enforcing integrity and reducing the number of errors present in the data. This is apart from the efficiency gains in CRUD operations, which would lead to a drastic improvement in resource planning and a reduction in cost for mitigating issues.
 
